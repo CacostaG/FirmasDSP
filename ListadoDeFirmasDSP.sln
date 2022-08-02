@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListadoDeFirmasDSP", "ListadoDeFirmasDSP.csproj", "{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AA55A1B-601B-4492-BCB9-A791775059A4}"
+	ProjectSection(SolutionItems) = preProject
+		RespuetaCorrecta.cs = RespuetaCorrecta.cs
+	EndProjectSection
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ReportesFirmasDSP", "ReportesFirmasDSP\ReportesFirmasDSP.rptproj", "{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugLocal|Any CPU = DebugLocal|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CC0077-0435-4AF0-A5FA-03EDB7DD1AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Debug|Any CPU.ActiveCfg = Debug
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Debug|Any CPU.Build.0 = Debug
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Debug|Any CPU.Deploy.0 = Debug
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Release|Any CPU.ActiveCfg = Release
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Release|Any CPU.Build.0 = Release
+		{04801D98-3F9D-4633-9698-A2EF0E8A4A2F}.Release|Any CPU.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D62574E-888B-426F-942F-A046E58FBCB0}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://deimos:8080/tfs/dti_sistemas
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ListadoDeFirmasDSP.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ReportesFirmasDSP\\ReportesFirmasDSP.rptproj
+		SccProjectName2 = ReportesFirmasDSP
+		SccLocalPath2 = ReportesFirmasDSP
+	EndGlobalSection
+EndGlobal

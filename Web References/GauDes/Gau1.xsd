@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GAU.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GAU.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TokenModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ambiente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AplicacionId" type="xs:int" />
+      <xs:element minOccurs="0" name="Aplicativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Area" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AreaId" type="xs:long" />
+      <xs:element minOccurs="0" name="Clues" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoError" type="xs:int" />
+      <xs:element minOccurs="0" name="ConexionActivas" type="xs:int" />
+      <xs:element minOccurs="0" name="ConexionPermitidas" type="xs:int" />
+      <xs:element minOccurs="0" name="ContadorErroresLogin" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Curp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaErrorLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaExpPwd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginValido" type="xs:int" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NipConsulta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoPersonal" type="xs:long" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rfc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRolesModels" />
+      <xs:element minOccurs="0" name="SesionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Siglas" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoUsuarioId" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="UltimaSesion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UrlDesarrollo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UrlProductivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenModel" nillable="true" type="tns:TokenModel" />
+  <xs:complexType name="ArrayOfRolesModels">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RolesModels" nillable="true" type="tns:RolesModels" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRolesModels" nillable="true" type="tns:ArrayOfRolesModels" />
+  <xs:complexType name="RolesModels">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Rol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RolId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RolesModels" nillable="true" type="tns:RolesModels" />
+</xs:schema>

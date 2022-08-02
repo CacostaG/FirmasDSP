@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="174b20d3-29b9-4ad6-9209-ae71e9acd922" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://gauwcf.ssaver.gob.mx/Gau.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Gau.xsd" MetadataType="Schema" ID="9286a12a-c467-4c90-85d7-0897f9bf26c7" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?xsd=xsd3" />
+    <MetadataFile FileName="Gau1.xsd" MetadataType="Schema" ID="ece46608-e2e9-452a-a5b6-8667f4204a58" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?xsd=xsd1" />
+    <MetadataFile FileName="Gau.disco" MetadataType="Disco" ID="98b48568-1405-4ad8-adcf-b20586771bac" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?disco" />
+    <MetadataFile FileName="Gau.wsdl" MetadataType="Wsdl" ID="ba6cf4da-2a4f-405a-bc22-c2968126ab76" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?wsdl" />
+    <MetadataFile FileName="Gau2.xsd" MetadataType="Schema" ID="78e6d1f3-000a-4c1c-bcf9-8684fd2c302f" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?xsd=xsd2" />
+    <MetadataFile FileName="Gau3.xsd" MetadataType="Schema" ID="9fed16ad-79ef-4b33-9daf-aca93e311126" SourceId="1" SourceUrl="http://gauwcf.ssaver.gob.mx/Gau.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
