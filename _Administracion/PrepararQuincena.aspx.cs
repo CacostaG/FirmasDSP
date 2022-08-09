@@ -10,12 +10,12 @@ namespace ListadoDeFirmasDSP._Administracion
 {
     public partial class PrepararQuincena : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            /*
+            /* postback inicial con token de GAU
+            
             if (Session["token"] == null)
 
             {
@@ -25,9 +25,8 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
                 User.Text = Session["user"].ToString();
-                if (!IsPostBack)
+               if (!IsPostBack)
                 {
-
 
                     var rol = Session["rol"];
                     switch (rol)
@@ -41,33 +40,40 @@ namespace ListadoDeFirmasDSP._Administracion
 
 
                     }
+
                     Parametros();
                 }
+            }*/
+
+
+            /* postback inicial provisional*/
+            if (!IsPostBack)
+            {
+                Parametros();
             }
 
-            */
         }
 
         private void Parametros()
         {
+            
+            /*obtiene el año directo del SP  */
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
-                      
 
-            SqlCommand cmd = new SqlCommand("exec Pry1015_ParametrosGenerales_Anio ", conexionBD);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
+            SqlCommand obtenAnio = new SqlCommand("spDSP_EjercicioFirmas", conexionBD);
+            SqlDataAdapter dataAdapterAnio= new SqlDataAdapter(obtenAnio);
+            DataTable dataTableAnio = new DataTable();
+            dataAdapterAnio.Fill(dataTableAnio);
 
-            ddlAnio.DataSource = dt;
+            ddlAnio.DataSource = dataTableAnio;
             ddlAnio.DataBind();
 
-             
         }
-
+        
         protected void ddlAnio_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            /*al seleccionar ejercicio activa automaticamente el siguiente filtro, para ejecutar el sp correspodiente */
             if (ddlAnio.SelectedItem.Text == "Selecciona")
             {
                  
@@ -92,11 +98,11 @@ namespace ListadoDeFirmasDSP._Administracion
 
                 dvMessageQuincena.Visible = false;
                 lblMensajeErrorQuincena.Visible = false;
-
+                
                 ddlQuincena.Enabled = true;
                 ddlQuincena.Items.Clear();
                 ddlQuincena.Items.Add("Selecciona");
-
+                
                 ddlNomina.Enabled = false;
                 ddlNomina.Items.Clear();
                 ddlNomina.Items.Add("Selecciona");
@@ -105,13 +111,17 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Clear();
                 ddlUR.Items.Add("Selecciona");
 
-                SqlCommand cmdQuincena = new SqlCommand("exec Pry1015_ParametrosGenerales_Quincena @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+
+                
+                SqlCommand cmdQuincena = new SqlCommand("spDSP_QnaFirmas @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaQuincena = new SqlDataAdapter(cmdQuincena);
                 DataTable dtQuincena = new DataTable();
                 sdaQuincena.Fill(dtQuincena);
 
+
                 ddlQuincena.DataSource = dtQuincena;
                 ddlQuincena.DataBind();
+               
             }
 
         }
@@ -146,7 +156,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Clear();
                 ddlUR.Items.Add("TODAS");
 
-                SqlCommand cmdNomina = new SqlCommand("exec Pry1015_ParametrosGenerales_Nomina @anio='" + ddlAnio.SelectedItem.Value + "' , @qna='" + ddlQuincena.Text + "'", conexionBD);
+                SqlCommand cmdNomina = new SqlCommand("spDSP_NominaFirmas @anio='" + ddlAnio.SelectedItem.Value + "' , @qna='" + ddlQuincena.Text + "'", conexionBD);
                 SqlDataAdapter sdaNomina = new SqlDataAdapter(cmdNomina);
                 DataTable dtNomina = new DataTable();
                 sdaNomina.Fill(dtNomina);
@@ -174,7 +184,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Add("TODAS");
                 
 
-                SqlCommand cmdUR = new SqlCommand("exec Pry1015_ParametrosGenerales_UR @anio='" + ddlAnio.SelectedItem.Value + "' , @qna='" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "'", conexionBD);
+                SqlCommand cmdUR = new SqlCommand("spDSP_URFirmas @anio='" + ddlAnio.SelectedItem.Value + "' , @qna='" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "'", conexionBD);
                 SqlDataAdapter sdaUR = new SqlDataAdapter(cmdUR);
                 DataTable dtUR = new DataTable();
                 sdaUR.Fill(dtUR);
@@ -299,7 +309,7 @@ namespace ListadoDeFirmasDSP._Administracion
         {
 
             DataTable TablaGVUR = new DataTable();
-            SqlDataAdapter consultaGVUR = new SqlDataAdapter("exec Pry1015_PrepararQuincena_Buscar @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
+            SqlDataAdapter consultaGVUR = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
             conexionBD.Open();
 
             consultaGVUR.Fill(TablaGVUR);
@@ -336,7 +346,7 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
                 DataTable TablaGVNomina = new DataTable();
-                SqlDataAdapter consultaGVNomina = new SqlDataAdapter("exec Pry1015_PrepararQuincena_Buscar @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
+                SqlDataAdapter consultaGVNomina = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
                 conexionBD.Open();
                 consultaGVNomina.Fill(TablaGVNomina);
                 conexionBD.Close();
@@ -369,7 +379,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 else
                 {
                     DataTable TablaGVquincena = new DataTable();
-                    SqlDataAdapter consultaGVquincena = new SqlDataAdapter("exec Pry1015_PrepararQuincena_Buscar @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "'", conexionBD);
+                    SqlDataAdapter consultaGVquincena = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "'", conexionBD);
                     conexionBD.Open();
                     consultaGVquincena.Fill(TablaGVquincena);
                     conexionBD.Close();
@@ -443,7 +453,7 @@ namespace ListadoDeFirmasDSP._Administracion
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add(new ListItem("Selecciona", "0"));
 
-            SqlCommand cmd = new SqlCommand("exec Pry1015_ParametrosGenerales_Anio", conexionBD);
+            SqlCommand cmd = new SqlCommand("spDSP_EjercicioFirmas", conexionBD);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -455,6 +465,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
         }
 
+       
 
         protected void btnPreparaPrd_Click(object sender, EventArgs e)
         {
@@ -464,16 +475,15 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 foreach (GridViewRow row in gvPreparaQuincena.Rows)
                 {
-                    SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+                    SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
                     conexionBD.Open();
-
                     var checkboxSelectActualizaPreparaQuincena = row.FindControl("Checkbox1") as CheckBox;
 
                     if (checkboxSelectActualizaPreparaQuincena.Checked)
                     {
 
                         // OBTENER_DATOS();
-                        SqlCommand ActualizaPreparaQuincena = new SqlCommand("Pry1015_PrepararQuincena_inserta", conexionBD);
+                        SqlCommand ActualizaPreparaQuincena = new SqlCommand("spDSP_InsertaPrdNomina", conexionBD);
                         ActualizaPreparaQuincena.CommandType = CommandType.StoredProcedure;
                         ActualizaPreparaQuincena.Parameters.AddWithValue("@CNm_Key", (row.FindControl("columCNm_Key") as Label).Text);
                         ActualizaPreparaQuincena.Parameters.AddWithValue("@anio", (row.FindControl("columAnio") as Label).Text);
@@ -487,7 +497,6 @@ namespace ListadoDeFirmasDSP._Administracion
                         ActualizaPreparaQuincena.Parameters.AddWithValue("@registros", (row.FindControl("columRegistros") as Label).Text);
                         ActualizaPreparaQuincena.Parameters.AddWithValue("@tipo", (row.FindControl("columTipo") as Label).Text);
                  
-                       
 
                        int respuesta =   ActualizaPreparaQuincena.ExecuteNonQuery();
                         
@@ -495,6 +504,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
                         if (respuesta > 0 )
                         {
+                           
 
                             ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal({" +
                                   " title: '¿Desea continuar con el proceso?'," +
@@ -546,6 +556,10 @@ namespace ListadoDeFirmasDSP._Administracion
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!','" + ex.Message + "', 'warning');", true);
             }
         }
+
+
+
+        
 
     }
 }

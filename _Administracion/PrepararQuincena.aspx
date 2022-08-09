@@ -25,7 +25,7 @@
                                     <div class="form-group col-xs-12 col-md-6 col-lg-2">
                                         <label class="control-label">Ejercicio</label>
                                         <asp:DropDownList ID="ddlAnio" runat="server"
-                                            AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
+                                            AppendDataBoundItems="True" AutoPostBack="true" CssClass="form-control"
                                             DataTextField="anio"
                                             OnSelectedIndexChanged="ddlAnio_SelectedIndexChanged" align="center"
                                             UseSubmitBehavior="False">
@@ -36,6 +36,8 @@
                                             <asp:Label ID="lblMensajeErrorAnio1" runat="server" Text="" />
                                         </div>
                                     </div>
+
+
 
                                     <div class="form-group col-xs-12 col-md-6 col-lg-2">
                                         <label class="control-label">Quincena </label>
@@ -49,6 +51,7 @@
                                             <asp:Label ID="lblMensajeErrorQuincena" runat="server" Text="Seleccione quincena" Visible ="false" />
                                         </div>
                                     </div>
+
 
                                     <div class="form-group col-xs-12 col-md-6 col-lg-2">
                                         <label class="contr-label">Nómina</label>
@@ -67,6 +70,11 @@
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+
+
+                  
+
+
 
                                     <div class="form-group col-xs-12 col-md-12 col-lg-12">
                                         <br />
@@ -100,7 +108,7 @@
                                                         <asp:GridView ID="gvPreparaQuincena" runat="server" 
                                                             CssClass="table table-striped" BackColor="White" BorderColor="#999999"
                                                             BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical"
-                                                            Width="100%" Style="font-size: 13px"
+                                                            Width="98%" Style="font-size: 13px"
                                                             ShowFooter="True" OnRowDataBound="gvTablaUno_RowDataBound" AutoGenerateColumns="False">
 
                                                             <FooterStyle BackColor="#CCCC99" HorizontalAlign="Center" VerticalAlign="Middle" />

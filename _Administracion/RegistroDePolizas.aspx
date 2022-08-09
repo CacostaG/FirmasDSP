@@ -55,7 +55,7 @@
                                     <div class="form-group col-xs-12 col-md-6 col-lg-2">
                                         <label class="control-label">Quincena</label>
                                         <asp:DropDownList ID="ddlQuincena" runat="server"
-                                            AppendDataBoundItems="True" DataTextField="qna" CssClass="form-control" align="center" AutoPostBack="True"
+                                            AppendDataBoundItems="True" DataTextField="qna" CssClass="form-control" align="center" Autopostback="true"
                                             OnSelectedIndexChanged="ddlQuincena_SelectedIndexChanged" Enabled="false">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                         </asp:DropDownList>
@@ -95,7 +95,7 @@
                                     <div class="form-group col-xs-12 col-md-6 col-lg-4">
                                         <label class="control-label">Producto de nómina</label>
                                         <asp:DropDownList ID="ddlPrdname" runat="server"
-                                            AppendDataBoundItems="True" DataTextField="prdname" AutoPostBack="True" CssClass="form-control" align="center" Enabled="false" OnSelectedIndexChanged="ddlPrdname_SelectedIndexChanged">
+                                            AppendDataBoundItems="True" DataTextField="prdname" AutoPostBack="true" CssClass="form-control" align="center" Enabled="false"  OnSelectedIndexChanged="ddlPrdname_SelectedIndexChanged">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                         </asp:DropDownList>
                                         <div id="dvMessagePrdname" runat="server" visible="false" class="alert alert-danger">
@@ -103,6 +103,10 @@
                                             <asp:Label ID="lblMensajeErrorPrdname" runat="server" Text="" />
                                         </div>
                                     </div>
+
+
+
+
 
 
                                     <div class="form-group col-xs-12 col-md-8 col-lg-6" id="dvDescripcion" runat="server" visible="false" required ="true">
@@ -216,6 +220,18 @@
 
                                                         <h4 class="modal-title">
                                                             <center>¿Desea continuar?</center>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
                                                        
                                                             <h4></h4>
                                                        

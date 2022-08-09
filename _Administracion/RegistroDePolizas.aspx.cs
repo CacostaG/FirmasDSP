@@ -8,7 +8,7 @@ namespace ListadoDeFirmasDSP._Administracion
 {
     public partial class RegistroDePolizas : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {/*
             if (Session["token"] == null)
@@ -37,6 +37,11 @@ namespace ListadoDeFirmasDSP._Administracion
                     Parametros();
                 }
             }*/
+
+            if (!IsPostBack)
+            {
+                Parametros();
+            }
         }
         private void Parametros()
         {
@@ -44,7 +49,7 @@ namespace ListadoDeFirmasDSP._Administracion
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
 
-            SqlCommand cmdPAnio = new SqlCommand("exec Pry1015_ParametrodeRegistroPoliza_Anio", conexionBD);
+            SqlCommand cmdPAnio = new SqlCommand("spDSP_EjercicioFirmas", conexionBD);
             SqlDataAdapter sdAnio = new SqlDataAdapter(cmdPAnio);
             DataTable dtAnio = new DataTable();
             sdAnio.Fill(dtAnio);
@@ -91,7 +96,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 dvMessageNomina.Visible = false;
                 dvMessageQuincena.Visible = false;
                 dvMessageAnio1.Visible = false;
-                SqlCommand cmdQuincena = new SqlCommand("exec Pry1015_ParametrodeRegistroPoliza_QNA @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdQuincena = new SqlCommand("spDSP_DisponibleQnaPrdFirmas @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaQuincena = new SqlDataAdapter(cmdQuincena);
                 DataTable dtQuincena = new DataTable();
                 sdaQuincena.Fill(dtQuincena);
@@ -125,6 +130,7 @@ namespace ListadoDeFirmasDSP._Administracion
             }
             else
             {
+                
                 BindGridViewQuincena();
 
                 btnSave.Visible = false;
@@ -136,7 +142,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 dvMessageNomina.Visible = false;
                 dvMessageQuincena.Visible = false;
                 dvMessageAnio1.Visible = false;
-                SqlCommand cmdNomina = new SqlCommand("Pry1015_ParametrodeRegistroPoliza_Nomina @qna = '" + ddlQuincena.SelectedItem.Value + "', @anio = '" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdNomina = new SqlCommand("spDSP_DisponibleNominaPrdFirmas @anio = '" + ddlAnio.SelectedItem.Value + "', @qna = '" + ddlQuincena.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaNomina = new SqlDataAdapter(cmdNomina);
                 DataTable dtNomina = new DataTable();
                 sdaNomina.Fill(dtNomina);
@@ -175,6 +181,7 @@ namespace ListadoDeFirmasDSP._Administracion
             }
             else
             {
+                
                 BindGridViewNomina();
                 btnSave.Visible = false;
                 ddlUR.Enabled = true;
@@ -185,7 +192,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 dvMessageNomina.Visible = false;
                 dvMessageQuincena.Visible = false;
                 dvMessageAnio1.Visible = false;
-                SqlCommand cmdUR = new SqlCommand("exec Pry1015_ParametrodeRegistroPoliza_UR @nomina= '" + ddlNomina.SelectedItem.Value + "' ,@qna = '" + ddlQuincena.SelectedItem.Value + "' ,@anio ='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdUR = new SqlCommand("spDSP_DisponibleURPrdFirmas @nomina= '" + ddlNomina.SelectedItem.Value + "' ,@qna = '" + ddlQuincena.SelectedItem.Value + "' ,@anio ='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaUR = new SqlDataAdapter(cmdUR);
                 DataTable dtUR = new DataTable();
                 sdaUR.Fill(dtUR);
@@ -204,6 +211,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
             if (ddlUR.SelectedItem.Text == "Selecciona")
             {
+                
                 BindGridViewNomina();
                 btnSave.Visible = false;
                 dvDescripcion.Visible = false;
@@ -223,16 +231,22 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 BindGridViewUR();
                 btnSave.Visible = false;
+                
                 ddlPrdname.Enabled = true;
                 ddlPrdname.Items.Clear();
                 ddlPrdname.Items.Add("Selecciona");
+                
+
+       
+
+
                 dvMessagePrdname.Visible = false;
                 dvMessageUR.Visible = false;
                 dvMessageUR.Visible = false;
                 dvMessageNomina.Visible = false;
                 dvMessageQuincena.Visible = false;
                 dvMessageAnio1.Visible = false;
-                SqlCommand cmdPRDNAME = new SqlCommand("exec Pry1015_ParametrodeRegistroPoliza_PRDNAME @ur = '" + ddlUR.SelectedItem.Value + "' ,@nomina = '" + ddlNomina.SelectedItem.Value + "' ,@qna = '" + ddlQuincena.SelectedItem.Value + "' ,@anio ='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdPRDNAME = new SqlCommand("spDSP_DisponibleProductosPrdFirmas @ur = '" + ddlUR.SelectedItem.Value + "' ,@nomina = '" + ddlNomina.SelectedItem.Value + "' ,@qna = '" + ddlQuincena.SelectedItem.Value + "' ,@anio ='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaPRDNAME = new SqlDataAdapter(cmdPRDNAME);
                 DataTable dtPRDNAME = new DataTable();
                 sdaPRDNAME.Fill(dtPRDNAME);
@@ -246,6 +260,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
         protected void ddlPrdname_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (ddlPrdname.SelectedItem.Text == "Selecciona")
             {
                 BindGridViewUR();
@@ -264,64 +279,62 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 TextBox();
             }
+           
         }
 
         private void TextBox()
         {
-            if ((!"Selecciona".Equals(ddlAnio.Text)) || (!"Selecciona".Equals(ddlQuincena.Text)) || (!"Selecciona".Equals(ddlNomina.Text)) || (!"Selecciona".Equals(ddlUR.Text)) || (!"Selecciona".Equals(ddlPrdname)))
-            {
-                btnSave.Visible = true;
-                conexionBD.Open();
-                SqlCommand cmdTexBox = new SqlCommand("exec Pry1015_ParametrodeRegistroPoliza_DATOS @anio ='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "' ,@nomina= '" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "'", conexionBD);
-                SqlDataReader TxtDatos;
-                TxtDatos = cmdTexBox.ExecuteReader();
-                while (TxtDatos.Read() == true)
-                {
-                    txtDescripcion.Text = TxtDatos["descripcion"].ToString();
-                    txtMemo.Text = TxtDatos["memorandum"].ToString();
-                    txtPoliza.Text = TxtDatos["poliza"].ToString();
-                    txt_FechaElabora.Text = TxtDatos["fecha_elaboracion"].ToString();
-                    DateTime Fecha1 = Convert.ToDateTime(TxtDatos["fecha_elaboracion"]); //Recupero fecha inicio y la convierto a datetime
-                    txt_FechaElabora.Text = Fecha1.ToString("yyyy-MM-dd");  // Se la asigno en el formato que lo muestra (Lo e probado directo sin convertir y en diferentes formatos y nada).
-                                                                            // txt_FechaElabora.Text= DateTime.Now.ToShortDateString();
-                    DateTime Fecha2 = Convert.ToDateTime(TxtDatos["fecha_pago"]);
-                    txt_FechaPago.Text = Fecha2.ToString("yyyy-MM-dd");
-                    //  txt_FechaPago.Text = TxtDatos["fecha_pago"].ToString();
-                    dvDescripcion.Visible = true;
-                    dvFecha_Elabora.Visible = true;
-                    dvFecha_Pago.Visible = true;
-                    dvMEmorandum.Visible = true;
-                    dvPoliza.Visible = true;
-                    
+            BindGridViewPRDNAME();
+
+             if ((!"Selecciona".Equals(ddlAnio.Text)) || (!"Selecciona".Equals(ddlQuincena.Text)) || (!"Selecciona".Equals(ddlNomina.Text)) || (!"Selecciona".Equals(ddlUR.Text)) || (!"Selecciona".Equals(ddlPrdname)))
+              {
+                  btnSave.Visible = true;
+                  conexionBD.Open();
+                  SqlCommand cmdTexBox = new SqlCommand("DSP_ProductosNominaCompletos @anio ='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "' ,@nomina= '" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "'", conexionBD);
+                  SqlDataReader TxtDatos;
+                  TxtDatos = cmdTexBox.ExecuteReader();
+                  while (TxtDatos.Read() == true)
+                  {
+                      txtDescripcion.Text = TxtDatos["descripcion"].ToString();
+                      txtMemo.Text = TxtDatos["memorandum"].ToString();
+                      txtPoliza.Text = TxtDatos["poliza"].ToString();
+                      txt_FechaElabora.Text = TxtDatos["fecha_elaboracion"].ToString();
+                      DateTime Fecha1 = Convert.ToDateTime(TxtDatos["fecha_elaboracion"]); //Recupero fecha inicio y la convierto a datetime
+                      txt_FechaElabora.Text = Fecha1.ToString("yyyy-MM-dd");  // Se la asigno en el formato que lo muestra (Lo e probado directo sin convertir y en diferentes formatos y nada).
+                                                                              // txt_FechaElabora.Text= DateTime.Now.ToShortDateString();
+                      DateTime Fecha2 = Convert.ToDateTime(TxtDatos["fecha_pago"]);
+                      txt_FechaPago.Text = Fecha2.ToString("yyyy-MM-dd");
+                      //  txt_FechaPago.Text = TxtDatos["fecha_pago"].ToString();
+                      dvDescripcion.Visible = true;
+                      dvFecha_Elabora.Visible = true;
+                      dvFecha_Pago.Visible = true;
+                      dvMEmorandum.Visible = true;
+                      dvPoliza.Visible = true;
+
+                  }
+                  conexionBD.Close();
+                  dvDescripcion.Visible = true;
+                  dvFecha_Elabora.Visible = true;
+                  dvFecha_Pago.Visible = true;
+                  dvMEmorandum.Visible = true;
+                  dvPoliza.Visible = true;
+
+              }
+              else
+              {
+                  dvDescripcion.Visible = false;
+                  txtDescripcion.Text = "";
+                  dvMEmorandum.Visible = false;
+                  txtMemo.Text = "";
+                  dvPoliza.Visible = false;
+                  txtPoliza.Text = "";
+                  dvFecha_Elabora.Visible = false;
+                  txt_FechaElabora.Text = "";
+                  dvFecha_Pago.Visible = false;
+                  txt_FechaPago.Text = "";
+              }
 
 
-                }
-                conexionBD.Close();
-                dvDescripcion.Visible = true;
-                dvFecha_Elabora.Visible = true;
-                dvFecha_Pago.Visible = true;
-                dvMEmorandum.Visible = true;
-                dvPoliza.Visible = true;
-               
-
-
-
-
-
-            }
-            else
-            {
-                dvDescripcion.Visible = false;
-                txtDescripcion.Text = "";
-                dvMEmorandum.Visible = false;
-                txtMemo.Text = "";
-                dvPoliza.Visible = false;
-                txtPoliza.Text = "";
-                dvFecha_Elabora.Visible = false;
-                txt_FechaElabora.Text = "";
-                dvFecha_Pago.Visible = false;
-                txt_FechaPago.Text = "";
-            }
         }
 
         public void ResetControl()
@@ -475,7 +488,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 DateTime today = DateTime.Today;
                 DateTime dateTime = DateTime.UtcNow.Date;
                 conexionBD.Open();
-                SqlCommand UpdateT = new SqlCommand("Pry1015_ActualizaRegistroDePolizas", conexionBD);
+                SqlCommand UpdateT = new SqlCommand("DSP_ProductosNominaCompletosUpdate", conexionBD);
                 UpdateT.CommandType = CommandType.StoredProcedure;
                 UpdateT.Parameters.Clear();
                 UpdateT.Parameters.AddWithValue("@anio", Convert.ToInt16(ddlAnio.Text));
@@ -489,7 +502,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 UpdateT.Parameters.AddWithValue("@memorandum", Convert.ToInt64(txtMemo.Text));
                 UpdateT.Parameters.AddWithValue("@poliza", Convert.ToInt64(txtPoliza.Text));
                 // vlaidar usuario con carlos por lo de GUA
-                UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(User.Text));
+                /*UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(User.Text));*/
                 UpdateT.ExecuteNonQuery();
                 /*
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'La operación se ha realizado con éxito.', 'success');", true);
@@ -638,7 +651,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewQuincena()
         {
             DataTable GridViewQuincena = new DataTable();
-            SqlDataAdapter consultaGridViewQuincena = new SqlDataAdapter("exec Pry1015_RegistroDePolizasGridQna @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ", conexionBD);
+            SqlDataAdapter consultaGridViewQuincena = new SqlDataAdapter("DSP_GvProductosNominaXQna @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewQuincena.Fill(GridViewQuincena);
@@ -665,7 +678,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
 
 
-             gvRegisgtroDePolizas.FooterRow.Cells[6].Text = "Totales";
+                gvRegisgtroDePolizas.FooterRow.Cells[6].Text = "Totales";
                 gvRegisgtroDePolizas.FooterRow.Cells[1].HorizontalAlign = HorizontalAlign.Center;
                 
                 gvRegisgtroDePolizas.Columns[0].Visible = false;
@@ -682,7 +695,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewNomina()
         {
             DataTable GridViewNomina = new DataTable();
-            SqlDataAdapter consultaGridViewNomina = new SqlDataAdapter("exec Pry1015_RegistroDePolizasGridNomina @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='"+ddlNomina.Text+"' ", conexionBD);
+            SqlDataAdapter consultaGridViewNomina = new SqlDataAdapter("DSP_GvProductosNominaXNomina @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='"+ddlNomina.Text+"' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewNomina.Fill(GridViewNomina);
@@ -723,7 +736,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewUR()
         {
             DataTable GridViewUR = new DataTable();
-            SqlDataAdapter consultaGridViewUR = new SqlDataAdapter("exec Pry1015_RegistroDePolizasGridUr @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text +"' ,@ur='"+ddlUR.Text+ "' ", conexionBD);
+            SqlDataAdapter consultaGridViewUR = new SqlDataAdapter("DSP_GvProductosNominaXUR @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text +"' ,@ur='"+ddlUR.Text+ "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewUR.Fill(GridViewUR);
@@ -763,7 +776,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewPRDNAME()
         {
             DataTable GridViewPRDNAME = new DataTable();
-            SqlDataAdapter consultaGridViewPRDNAME = new SqlDataAdapter("exec Pry1015_RegistroDePolizasGridPRDNAME @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "' ", conexionBD);
+            SqlDataAdapter consultaGridViewPRDNAME = new SqlDataAdapter("DSP_GvProductosNominaXPrd @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewPRDNAME.Fill(GridViewPRDNAME);
@@ -805,5 +818,8 @@ namespace ListadoDeFirmasDSP._Administracion
         {
 
         }
+
+     
+           
     }
 }

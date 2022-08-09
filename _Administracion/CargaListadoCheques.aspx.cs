@@ -11,7 +11,7 @@ namespace ListadoDeFirmasDSP._Administracion
 {
     public partial class CargaListadoCheques : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {/*
             if (Session["token"] == null)
@@ -39,6 +39,9 @@ namespace ListadoDeFirmasDSP._Administracion
                     Parametros();
                 }
             }*/
+
+
+            Parametros();
         }
 
         /*select parametros*/
@@ -46,7 +49,7 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
-            SqlCommand cmd = new SqlCommand("exec Pry1015_ListadoFirmas_ParametrosChequesDetalle_SPAnio ", conexionBD);
+            SqlCommand cmd = new SqlCommand("exec spDSP_EjercicioFirmas ", conexionBD);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -89,7 +92,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Add("Selecciona");
 
                 lblMensajeErrorAnio1 = null;
-                SqlCommand cmdQuincenaInicial = new SqlCommand("exec Pry1015_ListadoFirmas_ParametrosChequesDetalle_SPQna @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdQuincenaInicial = new SqlCommand("exec spDSP_QnaFirmas @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaQuincenaInicial = new SqlDataAdapter(cmdQuincenaInicial);
                 DataTable dtQuincenaInicial = new DataTable();
                 sdaQuincenaInicial.Fill(dtQuincenaInicial);
