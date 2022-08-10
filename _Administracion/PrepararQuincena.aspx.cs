@@ -309,7 +309,7 @@ namespace ListadoDeFirmasDSP._Administracion
         {
 
             DataTable TablaGVUR = new DataTable();
-            SqlDataAdapter consultaGVUR = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
+            SqlDataAdapter consultaGVUR = new SqlDataAdapter("spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
             conexionBD.Open();
 
             consultaGVUR.Fill(TablaGVUR);
@@ -346,7 +346,7 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
                 DataTable TablaGVNomina = new DataTable();
-                SqlDataAdapter consultaGVNomina = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
+                SqlDataAdapter consultaGVNomina = new SqlDataAdapter("spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
                 conexionBD.Open();
                 consultaGVNomina.Fill(TablaGVNomina);
                 conexionBD.Close();
@@ -379,7 +379,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 else
                 {
                     DataTable TablaGVquincena = new DataTable();
-                    SqlDataAdapter consultaGVquincena = new SqlDataAdapter("exec spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "'", conexionBD);
+                    SqlDataAdapter consultaGVquincena = new SqlDataAdapter("spDSP_PreparaQna @anio='" + ddlAnio.Text + "',@qna='" + ddlQuincena.Text + "'", conexionBD);
                     conexionBD.Open();
                     consultaGVquincena.Fill(TablaGVquincena);
                     conexionBD.Close();

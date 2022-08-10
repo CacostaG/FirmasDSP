@@ -290,7 +290,7 @@ namespace ListadoDeFirmasDSP._Administracion
               {
                   btnSave.Visible = true;
                   conexionBD.Open();
-                  SqlCommand cmdTexBox = new SqlCommand("DSP_ProductosNominaCompletos @anio ='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "' ,@nomina= '" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "'", conexionBD);
+                  SqlCommand cmdTexBox = new SqlCommand("spDSP_ProductosNominaCompletos @anio ='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "' ,@nomina= '" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "'", conexionBD);
                   SqlDataReader TxtDatos;
                   TxtDatos = cmdTexBox.ExecuteReader();
                   while (TxtDatos.Read() == true)
@@ -488,7 +488,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 DateTime today = DateTime.Today;
                 DateTime dateTime = DateTime.UtcNow.Date;
                 conexionBD.Open();
-                SqlCommand UpdateT = new SqlCommand("DSP_ProductosNominaCompletosUpdate", conexionBD);
+                SqlCommand UpdateT = new SqlCommand("spDSP_ProductosNominaCompletosUpdate", conexionBD);
                 UpdateT.CommandType = CommandType.StoredProcedure;
                 UpdateT.Parameters.Clear();
                 UpdateT.Parameters.AddWithValue("@anio", Convert.ToInt16(ddlAnio.Text));
@@ -651,7 +651,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewQuincena()
         {
             DataTable GridViewQuincena = new DataTable();
-            SqlDataAdapter consultaGridViewQuincena = new SqlDataAdapter("DSP_GvProductosNominaXQna @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ", conexionBD);
+            SqlDataAdapter consultaGridViewQuincena = new SqlDataAdapter("spDSP_GvProductosNominaXQna @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewQuincena.Fill(GridViewQuincena);
@@ -695,7 +695,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewNomina()
         {
             DataTable GridViewNomina = new DataTable();
-            SqlDataAdapter consultaGridViewNomina = new SqlDataAdapter("DSP_GvProductosNominaXNomina @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='"+ddlNomina.Text+"' ", conexionBD);
+            SqlDataAdapter consultaGridViewNomina = new SqlDataAdapter("spDSP_GvProductosNominaXNomina @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='"+ddlNomina.Text+"' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewNomina.Fill(GridViewNomina);
@@ -736,7 +736,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewUR()
         {
             DataTable GridViewUR = new DataTable();
-            SqlDataAdapter consultaGridViewUR = new SqlDataAdapter("DSP_GvProductosNominaXUR @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text +"' ,@ur='"+ddlUR.Text+ "' ", conexionBD);
+            SqlDataAdapter consultaGridViewUR = new SqlDataAdapter("spDSP_GvProductosNominaXUR @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text +"' ,@ur='"+ddlUR.Text+ "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewUR.Fill(GridViewUR);
@@ -776,7 +776,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridViewPRDNAME()
         {
             DataTable GridViewPRDNAME = new DataTable();
-            SqlDataAdapter consultaGridViewPRDNAME = new SqlDataAdapter("DSP_GvProductosNominaXPrd @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "' ", conexionBD);
+            SqlDataAdapter consultaGridViewPRDNAME = new SqlDataAdapter("spDSP_GvProductosNominaXPrd @anio= '" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' ,@prdname='" + ddlPrdname.Text + "' ", conexionBD);
             conexionBD.Open();
 
             consultaGridViewPRDNAME.Fill(GridViewPRDNAME);

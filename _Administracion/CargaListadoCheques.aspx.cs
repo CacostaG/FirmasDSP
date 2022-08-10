@@ -41,7 +41,11 @@ namespace ListadoDeFirmasDSP._Administracion
             }*/
 
 
-            Parametros();
+            /* postback inicial provisional*/
+            if (!IsPostBack)
+            {
+                Parametros();
+            }
         }
 
         /*select parametros*/
@@ -49,7 +53,7 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
-            SqlCommand cmd = new SqlCommand("exec spDSP_EjercicioFirmas ", conexionBD);
+            SqlCommand cmd = new SqlCommand("spDSP_EjercicioFirmas ", conexionBD);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -92,7 +96,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Add("Selecciona");
 
                 lblMensajeErrorAnio1 = null;
-                SqlCommand cmdQuincenaInicial = new SqlCommand("exec spDSP_QnaFirmas @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdQuincenaInicial = new SqlCommand("spDSP_DisponibleQnaMemPolFirmas @anio='" + ddlAnio.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaQuincenaInicial = new SqlDataAdapter(cmdQuincenaInicial);
                 DataTable dtQuincenaInicial = new DataTable();
                 sdaQuincenaInicial.Fill(dtQuincenaInicial);
@@ -132,7 +136,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Add("Selecciona");
                 dvMessageQuincenaInicial1.Visible = false;
 
-                SqlCommand cmdNom = new SqlCommand("exec Pry1015_ListadoFirmas_ParametrosChequesDetalle_SPNom @anio = '" + ddlAnio.SelectedItem.Value + "', @qna= '" + ddlQna.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdNom = new SqlCommand("spDSP_DisponibleNominaMemPolFirmas @anio = '" + ddlAnio.SelectedItem.Value + "', @qna= '" + ddlQna.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaNom = new SqlDataAdapter(cmdNom);
                 DataTable dtNom = new DataTable();
                 sdaNom.Fill(dtNom);
@@ -160,7 +164,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 ddlUR.Items.Clear();
                 ddlUR.Items.Add("TODAS");
 
-                SqlCommand cmdUr = new SqlCommand("exec Pry1015_ListadoFirmas_ParametrosChequesDetalle_SPUR @anio= '" + ddlAnio.SelectedItem.Value + "',@qna = '" + ddlQna.SelectedItem.Value + "',@nomina ='" + ddlNomina.SelectedItem.Value + "'", conexionBD);
+                SqlCommand cmdUr = new SqlCommand("spDSP_DisponibleURMemPolFirmas @anio= '" + ddlAnio.SelectedItem.Value + "',@qna = '" + ddlQna.SelectedItem.Value + "',@nomina ='" + ddlNomina.SelectedItem.Value + "'", conexionBD);
                 SqlDataAdapter sdaUr = new SqlDataAdapter(cmdUr);
                 DataTable dtUr = new DataTable();
                 sdaUr.Fill(dtUr);
@@ -259,7 +263,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void BindGridView()
         {
             DataTable TablaUR = new DataTable();
-            SqlDataAdapter consultaUR = new SqlDataAdapter("exec Pry1015_ListadoFirmas_CargaListadoCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
+            SqlDataAdapter consultaUR = new SqlDataAdapter("spDSP_GvProductosNominaXCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur='" + ddlUR.Text + "'", conexionBD);
             conexionBD.Open();
             consultaUR.Fill(TablaUR);
             conexionBD.Close();
@@ -275,7 +279,7 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
                 DataTable TablaNomina = new DataTable();
-                SqlDataAdapter consultaNomina = new SqlDataAdapter("exec Pry1015_ListadoFirmas_CargaListadoCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
+                SqlDataAdapter consultaNomina = new SqlDataAdapter("spDSP_GvProductosNominaXCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
                 conexionBD.Open();
                 consultaNomina.Fill(TablaNomina);
                 conexionBD.Close();
@@ -290,7 +294,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 else
                 {
                     DataTable Tablaquincena = new DataTable();
-                    SqlDataAdapter consultaquincena = new SqlDataAdapter("exec Pry1015_ListadoFirmas_CargaListadoCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "'", conexionBD);
+                    SqlDataAdapter consultaquincena = new SqlDataAdapter("spDSP_GvProductosNominaXCheques @anio='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "'", conexionBD);
                     conexionBD.Open();
                     consultaquincena.Fill(Tablaquincena);
                     conexionBD.Close();
@@ -350,7 +354,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void btnSave_Click(object sender, EventArgs e)
         {
             /*carga datos*/
-            SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+            SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
             conexionBD.Open();
 
             int contador = 0;
@@ -367,7 +371,7 @@ namespace ListadoDeFirmasDSP._Administracion
                         foreach (GridViewRow rowL in gvListadoCheques.Rows)
                         {
 
-                            SqlCommand save = new SqlCommand("Pry1015_ListadoFirmas_CargaListadoChequesInsert", conexionBD);
+                            SqlCommand save = new SqlCommand("spDSP_ChequesInsert", conexionBD);
                             save.CommandType = CommandType.StoredProcedure;
                             save.Parameters.Clear();
 
@@ -392,7 +396,7 @@ namespace ListadoDeFirmasDSP._Administracion
                             save.Parameters.AddWithValue("@Recibo", Convert.ToString(rowL.Cells[4].Text));
                             save.Parameters.AddWithValue("@Centro", Convert.ToString(rowL.Cells[5].Text));
                             save.Parameters.AddWithValue("@NombreCentro", Convert.ToString(rowL.Cells[6].Text));
-                            save.Parameters.AddWithValue("@User", Convert.ToString(User.Text));
+                          /*  save.Parameters.AddWithValue("@User", Convert.ToString(User.Text));*/
 
 
                             int respuesta = save.ExecuteNonQuery();
@@ -412,7 +416,7 @@ namespace ListadoDeFirmasDSP._Administracion
                             }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'El producto de nómina ya ha sido cargado previamente', 'error');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'El listado de cheques ya ha sido cargado previamente', 'error');", true);
                                 btnSelect.Enabled = false;
                                 cargaArchivo.Enabled = false;
                                 gvListadoCheques.DataSource = null;
