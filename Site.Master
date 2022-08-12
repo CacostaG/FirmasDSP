@@ -290,7 +290,7 @@
                                             <asp:Label ID="lblModalDatoUsuario" runat="server" Text=""></asp:Label>
                                             <br />
                                             <br />
-                                            <asp:Label ID="lblModalCorreo" runat="server" Text="Correo:" Font-Bold="True"></asp:Label><br />
+                                            <asp:Label ID="lblModalCorreo" runat="server" Text="Tipo de usuario:" Font-Bold="True"></asp:Label><br />
                                             <asp:Label ID="lblModalDatoCorreo" runat="server" Text=""></asp:Label>
                                             <br />
                                             <br />

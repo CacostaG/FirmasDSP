@@ -535,6 +535,9 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="UserDAO.cs" />
+    <Compile Include="UserData.cs" />
+    <Compile Include="UserModel.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

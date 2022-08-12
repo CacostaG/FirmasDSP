@@ -12,57 +12,51 @@ namespace ListadoDeFirmasDSP
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            /*
-          if (Session["token"] == null)
 
+    
+
+            
+          if (UserData.token == 0 )
             {
-               
                 Response.Redirect("~/InicioSesion.aspx");
-
-
-
             }
-
             else
             {
-                 
                 if (!IsPostBack)
                 {
-
-                    rol.Text = Session["rol"].ToString();
+                    /*
+                    rol.Text = Session["TipoUsuario"].ToString();
                     nombreUsuario2.Text = Session["nombre"].ToString();
-                   jurisid.Text = Session["jurisdiccion_id"].ToString();
+                    jurisid.Text = Session["jurisdiccion_id"].ToString();*/
 
-             
-                      
-
-                        string Rol = (string)Session["rol"];
-                        switch (Rol)
-                        {
-                            case "Administrador":
-                                impresion.Visible = false;
-                                break;
-
-                            case "Validador":
-                                admin.Visible = false;
-                                impresion.Visible = false;
-                                impAdmin.Visible = false;
-                           
-                                break;
-
-                            case "Operador del sistema":
-                                admin.Visible = false;
-                                consulta.Visible = false;
-                                impAdmin.Visible = false;
-
+                    string Rol = (string)UserData.TipoUsuario;
+                    switch (Rol)
+                    {
+                        case "Administrador":
+                            impresion.Visible = false;
+                            break;
+                        case "Validador":
+                            admin.Visible = false;
+                            impresion.Visible = false;
+                            impAdmin.Visible = false;
                             break;
 
-                        }
-
+                        case "Operador del sistema":
+                            admin.Visible = false;
+                            consulta.Visible = false;
+                            impAdmin.Visible = false;
+                            break;
+                    }
                 }
 
+
+
             } 
-            */
+
+
+            
+      
+
         }
 
 
@@ -95,8 +89,9 @@ namespace ListadoDeFirmasDSP
         protected void clickDatosUser(object sender, EventArgs e)
         {
 
-            datosdeUser("", "", "");
+            LoadData("", "", "");
         }
+        
         protected void datosdeUser(string datoUsuario, string datoNombre, string datoCorreo)
         {
             Button buton = new Button();
@@ -107,10 +102,40 @@ namespace ListadoDeFirmasDSP
             PlaceHolder1.Controls.Add(buton);
 
 
-            lblModalDatoNombre.Text = Session["nombre"].ToString();
-            lblModalDatoUsuario.Text = Session["user"].ToString();
+            /*lblModalDatoNombre.Text = Session["nombre"].ToString();
+            lblModalDatoUsuario.Text = Session["Usuario"].ToString();
             lblModalDatoCorreo.Text = Session["email"].ToString();
-            lblJur.Text = Session["nombreJuris"].ToString();
+            lblJur.Text = Session["nombreJuris"].ToString();*/
+
+            lblModalDatoNombre.Text = UserData.nombre;
+            lblModalDatoUsuario.Text = UserData.Usuario;
+
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "datosUser", "$('#datosUser').modal('show');", true);
+            upModalUsers.Update();
+        }
+
+  
+
+        protected void LoadData(string datoUsuario, string datoNombre, string datoCorreo)
+        {
+            Button buton = new Button();
+            buton.Text = "Cerrar";
+            buton.CssClass = "btn btn-info";
+            buton.Attributes.Add("data-dismiss", "modal");
+            buton.Attributes.Add("aria-hidden", "true");
+            PlaceHolder1.Controls.Add(buton);
+
+
+            /*lblModalDatoNombre.Text = Session["nombre"].ToString();
+            lblModalDatoUsuario.Text = Session["Usuario"].ToString();
+            lblModalDatoCorreo.Text = Session["email"].ToString();
+            lblJur.Text = Session["nombreJuris"].ToString();*/
+
+            lblModalDatoNombre.Text = UserData.nombre;
+            lblModalDatoUsuario.Text = UserData.Usuario;
+            lblModalDatoCorreo.Text = UserData.TipoUsuario;
+            lblJur.Text = UserData.NombreJuris;
 
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "datosUser", "$('#datosUser').modal('show');", true);
@@ -118,5 +143,6 @@ namespace ListadoDeFirmasDSP
         }
 
        
+
     }
 }

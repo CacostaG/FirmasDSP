@@ -12,6 +12,7 @@ namespace ListadoDeFirmasDSP
         protected void Page_Load(object sender, EventArgs e)
 
         {
+            /*
 
             if (Session["token"] ==null)
             {
@@ -27,7 +28,7 @@ namespace ListadoDeFirmasDSP
             else
             {
                 
-            }
+            }*/
 
         }
     }
