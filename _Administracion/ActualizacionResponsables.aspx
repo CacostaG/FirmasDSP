@@ -28,7 +28,7 @@
                                 <label class="control-label">Jurisdicción</label>
                                 <asp:DropDownList ID="ddlJuris" runat="server"
                                     AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
-                                    DataTextField="nombre"
+                                    DataTextField="jurisdiccion"
                                     align="center"
                                     UseSubmitBehavior="False" OnSelectedIndexChanged="ddlJuris_SelectedIndexChanged">
                                     <asp:ListItem Value="0">Selecciona</asp:ListItem>
@@ -67,7 +67,7 @@
 
 
 
-                            <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvMEmorandum" runat="server" visible="false">
+                            <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvMEmorandum" runat="server" visible ="false">
                                 <label class="control-label">Responsable</label>
                                 <asp:TextBox runat="server" class="form-control" value="" ID="txtResponsable"></asp:TextBox>
 
@@ -174,6 +174,12 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <h4 class="modal-title">
                                                 <center>¿Desea continuar?</center>
+                                                <h4></h4>
+                                                <h4></h4>
+                                                <h4></h4>
+                                                <h4></h4>
+                                                <h4></h4>
+                                                <h4></h4>
                                                 <h4></h4>
                                                 <h4></h4>
                                                 <h4></h4>

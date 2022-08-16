@@ -12,10 +12,6 @@ namespace ListadoDeFirmasDSP
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-    
-
-            
           if (UserData.token == 0 )
             {
                 Response.Redirect("~/InicioSesion.aspx");

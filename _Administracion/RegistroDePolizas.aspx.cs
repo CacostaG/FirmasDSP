@@ -10,8 +10,9 @@ namespace ListadoDeFirmasDSP._Administracion
     {
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            if (Session["token"] == null)
+        {
+
+            if ((UserData.token ==0))
 
             {
                 Response.Redirect("~/InicioSesion.aspx");
@@ -19,11 +20,11 @@ namespace ListadoDeFirmasDSP._Administracion
 
             else
             {
-                User.Text = Session["user"].ToString();
+                
                 if (!IsPostBack)
                 {
 
-                    var rol = Session["rol"];
+                    var rol = (string)UserData.TipoUsuario;
                     switch (rol)
                     {
                         case "Validador":
@@ -36,12 +37,8 @@ namespace ListadoDeFirmasDSP._Administracion
 
                     Parametros();
                 }
-            }*/
-
-            if (!IsPostBack)
-            {
-                Parametros();
             }
+
         }
         private void Parametros()
         {
@@ -502,7 +499,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 UpdateT.Parameters.AddWithValue("@memorandum", Convert.ToInt64(txtMemo.Text));
                 UpdateT.Parameters.AddWithValue("@poliza", Convert.ToInt64(txtPoliza.Text));
                 // vlaidar usuario con carlos por lo de GUA
-                /*UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(User.Text));*/
+                UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(UserData.Usuario));
                 UpdateT.ExecuteNonQuery();
                 /*
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'La operación se ha realizado con éxito.', 'success');", true);

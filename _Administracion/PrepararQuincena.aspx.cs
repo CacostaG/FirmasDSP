@@ -14,8 +14,37 @@ namespace ListadoDeFirmasDSP._Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* postback inicial con token de GAU
-            
+
+            if ((UserData.token == 0))
+            {
+                Response.Redirect("~/InicioSesion.aspx");
+            }
+
+            else
+            {
+                if (!IsPostBack)
+                {
+                    var rol = (string)UserData.TipoUsuario;
+                    switch (rol)
+                    {
+                        case "Validador":
+                            Response.Redirect("~/Default");
+                            break;
+                        case "Operador del sistema":
+                            Response.Redirect("~/Default");
+                            break;
+
+
+                    }
+
+                    Parametros();
+                }
+            }
+
+
+
+            /* postback inicial con token de GAU*/
+            /*
             if (Session["token"] == null)
 
             {
@@ -43,14 +72,16 @@ namespace ListadoDeFirmasDSP._Administracion
 
                     Parametros();
                 }
-            }*/
-
+            }
+            */
 
             /* postback inicial provisional*/
-            if (!IsPostBack)
-            {
-                Parametros();
-            }
+            /*  if (!IsPostBack)
+              {
+                  Parametros();
+              }*/
+
+
 
         }
 
@@ -76,8 +107,6 @@ namespace ListadoDeFirmasDSP._Administracion
             /*al seleccionar ejercicio activa automaticamente el siguiente filtro, para ejecutar el sp correspodiente */
             if (ddlAnio.SelectedItem.Text == "Selecciona")
             {
-                 
-
                 ddlQuincena.Enabled = false;
                 ddlQuincena.Items.Clear();
                 ddlQuincena.Items.Add("Selecciona");

@@ -11,13 +11,11 @@ namespace ListadoDeFirmasDSP._Administracion
 {
     public partial class ActualizacionResponsables : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
-            if (Session["token"] == null)
+            if ((UserData.token == 0 ))
             {
-
                 Response.Redirect("~/InicioSesion.aspx");
             }
 
@@ -25,7 +23,7 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 if (!IsPostBack)
                 {
-                    var rol = Session["rol"];
+                    var rol = (string)UserData.TipoUsuario;
                     switch (rol)
                     {
                         case "Validador":
@@ -38,13 +36,13 @@ namespace ListadoDeFirmasDSP._Administracion
                     Parametros();
                     BindGridViewResponsables();
                 }
-            }*/
+            }
         }
 
         protected void BindGridViewResponsables()
         {
             DataTable dtResponsables = new DataTable();
-            SqlDataAdapter cmdResponsables = new SqlDataAdapter("exec Pry1015_SeleccionaResponsables", conexionBD);
+            SqlDataAdapter cmdResponsables = new SqlDataAdapter("spDSP_ResponsablesUnidad", conexionBD);
             conexionBD.Open();
             cmdResponsables.Fill(dtResponsables);
             conexionBD.Close();
@@ -58,7 +56,7 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             dvMEmorandum.Visible = false;
 
-            SqlCommand cmdJuris = new SqlCommand("exec Pry1015_ParametrosActualizacionResponsablesNombre", conexionBD);
+            SqlCommand cmdJuris = new SqlCommand("spDSP_DisponibleJurisdiccionResponsable", conexionBD);
             SqlDataAdapter sdJuris = new SqlDataAdapter(cmdJuris);
             DataTable dtJuris = new DataTable();
             sdJuris.Fill(dtJuris);
@@ -95,7 +93,8 @@ namespace ListadoDeFirmasDSP._Administracion
 
             else
             {
-                SqlCommand cmdCargo = new SqlCommand("exec Pry1015_ParametrosActualizacionResponsablesCargo @nombre ='" + ddlJuris.Text + "'", conexionBD);
+
+                SqlCommand cmdCargo = new SqlCommand("seleccionapuesto @juris ='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdCargo = new SqlDataAdapter(cmdCargo);
                 DataTable dtCargo = new DataTable();
                 sdCargo.Fill(dtCargo);
@@ -108,25 +107,25 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             if (ddlCargo.SelectedItem.Text == "Selecciona")
             {
-                dvMEmorandum.Visible = false;
+                dvMEmorandum.Visible = true;
             }
 
             else
             {
                 conexionBD.Open();
 
-                SqlCommand cmdTexBox = new SqlCommand("exec Pry1015_ParametrosActualizacionResponsablesNombreCompleto @nombre='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "'", conexionBD);
+                SqlCommand cmdTexBox = new SqlCommand("cargo @juris='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "'", conexionBD);
                 SqlDataReader TxtDatos;
                 TxtDatos = cmdTexBox.ExecuteReader();
 
                 while (TxtDatos.Read() == true)
                 {
-                    txtResponsable.Text = TxtDatos["nombre_completo"].ToString();
+                    txtResponsable.Text = TxtDatos["director"].ToString();
                     dvMEmorandum.Visible = true;
                 }
                 conexionBD.Close();
                 dvMEmorandum.Visible = true;
-                idJuris();
+                /*idJuris();*/
             }
         }
 

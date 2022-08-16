@@ -13,19 +13,17 @@ namespace ListadoDeFirmasDSP._Administracion
     {
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            if (Session["token"] == null)
-
+        {
+            if ((UserData.token == 0))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
 
             else
             {
-                User.Text = Session["user"].ToString();
                 if (!IsPostBack)
                 {
-                    var rol = Session["rol"];
+                    var rol = (string)UserData.TipoUsuario;
                     switch (rol)
                     {
                         case "Validador":
@@ -38,14 +36,10 @@ namespace ListadoDeFirmasDSP._Administracion
                     }
                     Parametros();
                 }
-            }*/
-
-
-            /* postback inicial provisional*/
-            if (!IsPostBack)
-            {
-                Parametros();
             }
+
+
+            
         }
 
         /*select parametros*/
@@ -390,13 +384,15 @@ namespace ListadoDeFirmasDSP._Administracion
 
                             /*Convert.ToString(rowL.Cells[1].Text));*/
 
-                             save.Parameters.AddWithValue("@Nombre", NombreText);
+                            save.Parameters.AddWithValue("@Nombre", NombreText);
 
                             save.Parameters.AddWithValue("@Total", Convert.ToDecimal(rowL.Cells[3].Text));
                             save.Parameters.AddWithValue("@Recibo", Convert.ToString(rowL.Cells[4].Text));
                             save.Parameters.AddWithValue("@Centro", Convert.ToString(rowL.Cells[5].Text));
                             save.Parameters.AddWithValue("@NombreCentro", Convert.ToString(rowL.Cells[6].Text));
-                          /*  save.Parameters.AddWithValue("@User", Convert.ToString(User.Text));*/
+                            save.Parameters.AddWithValue("@Usuario", Convert.ToString(UserData.Usuario));
+
+
 
 
                             int respuesta = save.ExecuteNonQuery();

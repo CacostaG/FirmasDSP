@@ -36,8 +36,7 @@ namespace ListadoDeFirmasDSP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-1H6H9IH\\SQLEXPRESS;Initial Catalog=SistematizacionLocal;Integ" +
-            "rated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.30.17.78;Initial Catalog=SistematizacionLocal;User ID=ExpData")]
         public string ConnFirmasDSP {
             get {
                 return ((string)(this["ConnFirmasDSP"]));
