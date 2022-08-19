@@ -12,20 +12,21 @@ namespace ListadoDeFirmasDSP._ImpresioListados
 {
     public partial class ListadosdeFirmasCheques : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["token"] == null)
+        
+            if (UserData.token == 0)
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
             else
             {
-                User.Text = Session["user"].ToString();
+                
                 /*   jurisid.Text = Session["jurisdiccion_id"].ToString();*/
                 if (!IsPostBack)
                 {
-                    var rol = Session["rol"];
+                    var rol = (string)UserData.TipoUsuario;
                     switch (rol)
                     {
                         case "Validador":
@@ -35,9 +36,11 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                             Response.Redirect("~/Default");
                             break;
                     }
-                    Parametros();
+                  /*  Parametros();*/
                 }
             }
+
+
         }
         protected void Parametros()
         {

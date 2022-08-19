@@ -45,7 +45,7 @@
                                     <label class="control-label">Jurisdicción</label>
                                     <asp:DropDownList ID ="ddlJuris" runat="server" Enabled ="false"
                                         autopostback="true" CssClass="form-control" AppendDataBoundItems="true"
-                                        DataTextField="ClaveJuris" aling="center"
+                                        DataTextField="Juris" aling="center"
                                         UseSubmitBehavior="false" OnSelectedIndexChanged="ddlJuris_SelectedIndexChanged" >
                                         <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                     </asp:DropDownList>
@@ -139,7 +139,7 @@
                                                     <AlternatingRowStyle BackColor="#CCCCC1" />
                                                     <Columns>
 
-                                                        <asp:TemplateField HeaderText="Producto_nomina_id" ItemStyle-HorizontalAlign="Center" Visible="false">
+                                                        <asp:TemplateField HeaderText="Producto_nomina_id" ItemStyle-HorizontalAlign="Center" Visible="true">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="Producto_nomina_id" runat="server" Text='<%# Eval("Producto_nomina_id") %>'></asp:Label>
 
@@ -148,7 +148,7 @@
                                                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                         </asp:TemplateField>
 
-                                                        <asp:TemplateField HeaderText="Año" ItemStyle-HorizontalAlign="Center" Visible="false">
+                                                        <asp:TemplateField HeaderText="Año" ItemStyle-HorizontalAlign="Center" Visible="true">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="columAnio" runat="server" Text='<%# Eval("anio") %>'></asp:Label>
                                                             </ItemTemplate>
@@ -198,7 +198,7 @@
 
                                                         <asp:TemplateField HeaderText="Importe neto" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="columImporte" runat="server" Text='<%# Eval("ImporteNeto","{0:C}") %>'></asp:Label>
+                                                                <asp:Label ID="columImporte" runat="server" Text='<%# Eval("ImpNeto","{0:C}") %>'></asp:Label>
                                                             </ItemTemplate>
 
                                                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -247,7 +247,7 @@
 
                                                         <asp:TemplateField HeaderText="Usuario que generó" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="columUsuario" runat="server" Text='<%# Eval("usuario") %>'></asp:Label>
+                                                                <asp:Label ID="columUsuario" runat="server" Text='<%# Eval("usuario_impresion") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                         </asp:TemplateField>

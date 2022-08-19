@@ -94,7 +94,7 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
 
-                SqlCommand cmdCargo = new SqlCommand("seleccionapuesto @juris ='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdCargo = new SqlCommand("spDSP_DisponibleCargoResponsable @nombreJuris ='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdCargo = new SqlDataAdapter(cmdCargo);
                 DataTable dtCargo = new DataTable();
                 sdCargo.Fill(dtCargo);
@@ -114,30 +114,31 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 conexionBD.Open();
 
-                SqlCommand cmdTexBox = new SqlCommand("cargo @juris='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "'", conexionBD);
+                SqlCommand cmdTexBox = new SqlCommand("spDSP_DisponibleTitularResponsable @nombreJuris='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "'", conexionBD);
                 SqlDataReader TxtDatos;
                 TxtDatos = cmdTexBox.ExecuteReader();
 
                 while (TxtDatos.Read() == true)
                 {
-                    txtResponsable.Text = TxtDatos["director"].ToString();
+                    txtResponsable.Text = TxtDatos["nombre_completo"].ToString();
                     dvMEmorandum.Visible = true;
                 }
                 conexionBD.Close();
                 dvMEmorandum.Visible = true;
-                /*idJuris();*/
+                idJurisTex.Visible = false;
+                idJuris();
             }
         }
 
         private void idJuris()
         {
             conexionBD.Open();
-            SqlCommand cmdTexBoxj = new SqlCommand("exec Pry1015_ParametrosActualizacionResponsablesJurisdiccionId @nombre='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "' ", conexionBD);
+            SqlCommand cmdTexBoxj = new SqlCommand("spDSP_DisponibleJurisdiccionIDResponsable @nombreJuris='" + ddlJuris.Text + "' ,@cargo='" + ddlCargo.Text + "' ", conexionBD);
             SqlDataReader TxtDatosj;
             TxtDatosj = cmdTexBoxj.ExecuteReader();
             while (TxtDatosj.Read() == true)
             {
-                idJurisTex.Text = TxtDatosj["jurisdiccion_id"].ToString();
+                idJurisTex.Text = TxtDatosj["jurisdiccionid"].ToString();
                 dvMEmorandum.Visible = true;
                 btnSave.Visible = true;
             }
@@ -196,10 +197,10 @@ namespace ListadoDeFirmasDSP._Administracion
         {
 
             conexionBD.Open();
-            SqlCommand UpdateResponsablesdeJurisdiccion = new SqlCommand("Pry1015_ActualizacionResponsables", conexionBD);
+            SqlCommand UpdateResponsablesdeJurisdiccion = new SqlCommand("spDSP_UpdateResponsable", conexionBD);
             UpdateResponsablesdeJurisdiccion.CommandType = CommandType.StoredProcedure;
             UpdateResponsablesdeJurisdiccion.Parameters.Clear();
-            UpdateResponsablesdeJurisdiccion.Parameters.AddWithValue("@jurisdiccion_id", Convert.ToInt32(idJurisTex.Text));
+            UpdateResponsablesdeJurisdiccion.Parameters.AddWithValue("@jurisdiccionid", Convert.ToInt32(idJurisTex.Text));
             UpdateResponsablesdeJurisdiccion.Parameters.AddWithValue("@cargo", Convert.ToString(ddlCargo.Text));
             UpdateResponsablesdeJurisdiccion.Parameters.AddWithValue("@nombre_completo", Convert.ToString(txtResponsable.Text));
             UpdateResponsablesdeJurisdiccion.ExecuteNonQuery();
