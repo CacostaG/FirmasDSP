@@ -11,11 +11,11 @@ namespace ListadoDeFirmasDSP._Consulta
     public partial class ConsultaNominaGenerada : System.Web.UI.Page
     {
 
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
 
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            if (Session["token"] == null)
+        {
+            if (UserData.token == 0)
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -23,7 +23,7 @@ namespace ListadoDeFirmasDSP._Consulta
             {
                 if (!IsPostBack)
                 {
-                    var rol = Session["rol"];
+                    var rol = (string)UserData.TipoUsuario;
                     switch (rol)
                     {
                         case "Operador del sistema":
@@ -34,11 +34,11 @@ namespace ListadoDeFirmasDSP._Consulta
                             break;
                     }
 
-                    ParametrosNomina();
+                   ParametrosNomina();
                 }
             }
 
-            */
+         
         }
 
 
@@ -47,7 +47,7 @@ namespace ListadoDeFirmasDSP._Consulta
             ddlJuris.Items.Clear();
             ddlJuris.Items.Add("Selecciona");
             ddlJuris.Items.Add("TODAS");
-            SqlCommand cmdJuris = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPJuris ", conexionBD);
+            SqlCommand cmdJuris = new SqlCommand("spDSP_Jurisdicciones ", conexionBD);
             SqlDataAdapter sdaJuris = new SqlDataAdapter(cmdJuris);
             DataTable dtJuris = new DataTable();
             sdaJuris.Fill(dtJuris);
@@ -112,7 +112,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlAnio.Items.Clear();
                 ddlAnio.Items.Add("Selecciona");
 
-                SqlCommand cmdAnio = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPAnio", conexionBD);
+                SqlCommand cmdAnio = new SqlCommand("spDSP_DisponibleAnioJuris", conexionBD);
                 SqlDataAdapter sdaAnio = new SqlDataAdapter(cmdAnio);
                 DataTable dtAnio = new DataTable();
                 sdaAnio.Fill(dtAnio);
@@ -149,7 +149,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlAnio.Items.Clear();
                 ddlAnio.Items.Add("Selecciona");
 
-                SqlCommand cmdAnio = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPAnio @jurisdiccionN='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdAnio = new SqlCommand("spDSP_DisponibleAnioJuris @jurisdiccionNombre='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaAnio = new SqlDataAdapter(cmdAnio);
                 DataTable dtAnio = new DataTable();
                 sdaAnio.Fill(dtAnio);
@@ -204,7 +204,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlQna.Items.Clear();
                 ddlQna.Items.Add("Selecciona");
 
-                SqlCommand cmdQnaSJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPQna @anio ='" + ddlAnio.Text + "'", conexionBD);
+                SqlCommand cmdQnaSJ = new SqlCommand("spDSP_DisponibleQnaJuris @anio ='" + ddlAnio.Text + "'", conexionBD);
                 SqlDataAdapter sdaQnaSJ = new SqlDataAdapter(cmdQnaSJ);
                 DataTable dtQnaSJ = new DataTable();
                 sdaQnaSJ.Fill(dtQnaSJ);
@@ -237,7 +237,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlQna.Items.Clear();
                 ddlQna.Items.Add("Selecciona");
 
-                SqlCommand cmdQnaCJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPQna @anio ='" + ddlAnio.Text + "', @jurisdiccionN ='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdQnaCJ = new SqlCommand("spDSP_DisponibleQnaJuris @anio ='" + ddlAnio.Text + "' , @jurisdiccionNombre ='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaQnaCJ = new SqlDataAdapter(cmdQnaCJ);
                 DataTable dtQnaCJ = new DataTable();
                 sdaQnaCJ.Fill(dtQnaCJ);
@@ -294,7 +294,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlNomina.Items.Clear();
                 ddlNomina.Items.Add("TODAS");
 
-                SqlCommand cmdNomiSJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPNom @anio ='" + ddlAnio.Text + "', @qna ='" + ddlQna.Text + "'", conexionBD);
+                SqlCommand cmdNomiSJ = new SqlCommand("spDSP_DisponibleNominaJuris @anio ='" + ddlAnio.Text + "', @qna ='" + ddlQna.Text + "'", conexionBD);
                 SqlDataAdapter sdaNomiSJ = new SqlDataAdapter(cmdNomiSJ);
                 DataTable dtNomiSJ = new DataTable();
                 sdaNomiSJ.Fill(dtNomiSJ);
@@ -327,7 +327,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlNomina.Items.Clear();
                 ddlNomina.Items.Add("TODAS");
 
-                SqlCommand cmdNomiCJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPNom @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@jurisdiccionN ='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdNomiCJ = new SqlCommand("spDSP_DisponibleNominaJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@jurisdiccionNombre ='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaNomiCJ = new SqlDataAdapter(cmdNomiCJ);
                 DataTable dtNomiCJ = new DataTable();
                 sdaNomiCJ.Fill(dtNomiCJ);
@@ -367,7 +367,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlUr.Items.Clear();
                 ddlUr.Items.Add("TODAS");
 
-                SqlCommand cmdUrSJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPUr @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
+                SqlCommand cmdUrSJ = new SqlCommand("spDSP_DisponibleURJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "'", conexionBD);
                 SqlDataAdapter sdaUrSJ = new SqlDataAdapter(cmdUrSJ);
                 DataTable dtUrSJ = new DataTable();
                 sdaUrSJ.Fill(dtUrSJ);
@@ -388,7 +388,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlUr.Items.Clear();
                 ddlUr.Items.Add("TODAS");
 
-                SqlCommand cmdUrCJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPUr @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@jurisdiccionN = '" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdUrCJ = new SqlCommand("spDSP_DisponibleURJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@jurisdiccionNombre = '" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaUrCJ = new SqlDataAdapter(cmdUrCJ);
                 DataTable dtUrCJ = new DataTable();
                 sdaUrCJ.Fill(dtUrCJ);
@@ -421,7 +421,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlPrd.Items.Clear();
                 ddlPrd.Items.Add("TODOS");
 
-                SqlCommand cmdPrdSJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPPrd @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "'", conexionBD);
+                SqlCommand cmdPrdSJ = new SqlCommand("spDSP_DisponiblePrdJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "'", conexionBD);
                 SqlDataAdapter sdaPrdSJ = new SqlDataAdapter(cmdPrdSJ);
                 DataTable dtPrdSJ = new DataTable();
                 sdaPrdSJ.Fill(dtPrdSJ);
@@ -438,7 +438,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlPrd.Items.Clear();
                 ddlPrd.Items.Add("TODOS");
 
-                SqlCommand cmdPrdCJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPPrd @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @jurisdiccionN='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdPrdCJ = new SqlCommand("spDSP_DisponiblePrdJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @jurisdiccionNombre='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaPrdCJ = new SqlDataAdapter(cmdPrdCJ);
                 DataTable dtPrdCJ = new DataTable();
                 sdaPrdCJ.Fill(dtPrdCJ);
@@ -461,7 +461,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlInstru.Items.Clear();
                 ddlInstru.Items.Add("TODOS");
 
-                SqlCommand cmdInstSJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPInst @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @prd='" + ddlPrd.Text + "'", conexionBD);
+                SqlCommand cmdInstSJ = new SqlCommand("spDSP_DisponibleInstrumentoJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @prdname='" + ddlPrd.Text + "'", conexionBD);
                 SqlDataAdapter sdaInstSJ = new SqlDataAdapter(cmdInstSJ);
                 DataTable dtInstSJ = new DataTable();
                 sdaInstSJ.Fill(dtInstSJ);
@@ -474,7 +474,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 ddlInstru.Items.Clear();
                 ddlInstru.Items.Add("TODOS");
 
-                SqlCommand cmdInstCJ = new SqlCommand("Pry1015_ListadoFirmasNominaGeneradosDetalle_SPInst @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @prd='" + ddlPrd.Text + "', @jurisdiccionN ='" + ddlJuris.Text + "'", conexionBD);
+                SqlCommand cmdInstCJ = new SqlCommand("spDSP_DisponibleInstrumentoJuris @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina='" + ddlNomina.Text + "',@ur = '" + ddlUr.Text + "', @prdname='" + ddlPrd.Text + "', @jurisdiccionNombre ='" + ddlJuris.Text + "'", conexionBD);
                 SqlDataAdapter sdaInstCJ = new SqlDataAdapter(cmdInstCJ);
                 DataTable dtInstCJ = new DataTable();
                 sdaInstCJ.Fill(dtInstCJ);
@@ -523,9 +523,9 @@ namespace ListadoDeFirmasDSP._Consulta
         protected void BindGridView()
         {
             DataTable dtInstruCJ = new DataTable();
-            SqlDataAdapter qInstruCJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada" +
-                  " @jurisdiccionNLF ='" + ddlJuris.Text + "',@anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF='" + ddlQna.Text + "' ,@nominaConsultaLF ='" + ddlNomina.Text +
-                  "' ,@urConsultaLF ='" + ddlUr.Text + "' ,@prdnameConsultaLF ='" + ddlPrd.Text + "',@instruConsultaLF ='" + ddlInstru.Text + "'", conexionBD);
+            SqlDataAdapter qInstruCJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada" +
+                  " @jurisdiccionNombre ='" + ddlJuris.Text + "',@anio ='" + ddlAnio.Text + "',@qna='" + ddlQna.Text + "' ,@nomina ='" + ddlNomina.Text +
+                  "' ,@ur ='" + ddlUr.Text + "' ,@prdname ='" + ddlPrd.Text + "',@instrumento ='" + ddlInstru.Text + "'", conexionBD);
             conexionBD.Open();
 
             qInstruCJ.Fill(dtInstruCJ);
@@ -540,14 +540,14 @@ namespace ListadoDeFirmasDSP._Consulta
             else
             {
                 DataTable dtInstruSJ = new DataTable();
-                SqlDataAdapter qInstruSJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "',@urConsultaLF ='" + ddlUr.Text + "',@prdnameConsultaLF='" + ddlPrd.Text + "',@instruConsultaLF ='" + ddlInstru.Text + "'", conexionBD);
+                SqlDataAdapter qInstruSJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "',@ur ='" + ddlUr.Text + "',@prdname='" + ddlPrd.Text + "',@instrumento ='" + ddlInstru.Text + "'", conexionBD);
                 conexionBD.Open();
 
                 qInstruSJ.Fill(dtInstruSJ);
                 conexionBD.Close();
 
                 if (dtInstruSJ.Rows.Count > 0)
-                {
+                { 
                     gvListadoNomina.DataSource = dtInstruSJ;
                     gvListadoNomina.DataBind();
                     gvListadoNomina.Columns[0].Visible = false;
@@ -556,7 +556,7 @@ namespace ListadoDeFirmasDSP._Consulta
                 else
                 {
                     DataTable dtInstruCJSI = new DataTable();
-                    SqlDataAdapter qInstruCJSI = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @jurisdiccionNLF ='" + ddlJuris.Text + "', @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "',@urConsultaLF ='" + ddlUr.Text + "',@prdnameConsultaLF='" + ddlPrd.Text + "'", conexionBD);
+                    SqlDataAdapter qInstruCJSI = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @jurisdiccionNombre ='" + ddlJuris.Text + "', @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "',@ur ='" + ddlUr.Text + "',@prdname='" + ddlPrd.Text + "'", conexionBD);
                     conexionBD.Open();
 
                     qInstruCJSI.Fill(dtInstruCJSI);
@@ -572,7 +572,7 @@ namespace ListadoDeFirmasDSP._Consulta
                     else
                     {
                         DataTable dtInstruSJSI = new DataTable();
-                        SqlDataAdapter qInstruSJSI = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "',@urConsultaLF ='" + ddlUr.Text + "',@prdnameConsultaLF='" + ddlPrd.Text + "'", conexionBD);
+                        SqlDataAdapter qInstruSJSI = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "',@ur ='" + ddlUr.Text + "',@prdname='" + ddlPrd.Text + "'", conexionBD);
                         conexionBD.Open();
 
                         qInstruSJSI.Fill(dtInstruSJSI);
@@ -588,7 +588,7 @@ namespace ListadoDeFirmasDSP._Consulta
                         else
                         {
                             DataTable dtPrdCJ = new DataTable();
-                            SqlDataAdapter qPrdCJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @jurisdiccionNLF ='" + ddlJuris.Text + "', @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "',@urConsultaLF ='" + ddlUr.Text + "'", conexionBD);
+                            SqlDataAdapter qPrdCJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @jurisdiccionNombre ='" + ddlJuris.Text + "', @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "',@ur ='" + ddlUr.Text + "'", conexionBD);
                             conexionBD.Open();
 
                             qPrdCJ.Fill(dtPrdCJ);
@@ -604,7 +604,7 @@ namespace ListadoDeFirmasDSP._Consulta
                             else
                             {
                                 DataTable dtPrdSJ = new DataTable();
-                                SqlDataAdapter qPrdSJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada  @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "',@urConsultaLF ='" + ddlUr.Text + "'", conexionBD);
+                                SqlDataAdapter qPrdSJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada  @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "',@ur ='" + ddlUr.Text + "'", conexionBD);
                                 conexionBD.Open();
 
                                 qPrdSJ.Fill(dtPrdSJ);
@@ -620,7 +620,7 @@ namespace ListadoDeFirmasDSP._Consulta
                                 else
                                 {
                                     DataTable dtUrCJ = new DataTable();
-                                    SqlDataAdapter qUrCJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @jurisdiccionNLF ='" + ddlJuris.Text + "' ,@anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "'", conexionBD);
+                                    SqlDataAdapter qUrCJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @jurisdiccionNombre ='" + ddlJuris.Text + "' ,@anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "'", conexionBD);
                                     conexionBD.Open();
 
                                     qUrCJ.Fill(dtUrCJ);
@@ -636,7 +636,7 @@ namespace ListadoDeFirmasDSP._Consulta
                                     else
                                     {
                                         DataTable dtUrSJ = new DataTable();
-                                        SqlDataAdapter qUrSJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "',@nominaConsultaLF ='" + ddlNomina.Text + "'", conexionBD);
+                                        SqlDataAdapter qUrSJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "',@nomina ='" + ddlNomina.Text + "'", conexionBD);
                                         conexionBD.Open();
 
                                         qUrSJ.Fill(dtUrSJ);
@@ -652,7 +652,7 @@ namespace ListadoDeFirmasDSP._Consulta
                                         else
                                         {
                                             DataTable dtNomCJ = new DataTable();
-                                            SqlDataAdapter qNomCJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @jurisdiccionNLF ='" + ddlJuris.Text + "' ,@anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "'", conexionBD);
+                                            SqlDataAdapter qNomCJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @jurisdiccionNombre ='" + ddlJuris.Text + "' ,@anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "'", conexionBD);
                                             conexionBD.Open();
 
                                             qNomCJ.Fill(dtNomCJ);
@@ -668,7 +668,7 @@ namespace ListadoDeFirmasDSP._Consulta
                                             else
                                             {
                                                 DataTable dtNomSJ = new DataTable();
-                                                SqlDataAdapter qNomSJ = new SqlDataAdapter("exec pry1015_ListadoFirmas_ConsultaNominaGenerada @anioConsultaLF ='" + ddlAnio.Text + "',@qnaConsultaLF ='" + ddlQna.Text + "'", conexionBD);
+                                                SqlDataAdapter qNomSJ = new SqlDataAdapter("spDSP_ConsultaNominaGenerada @anio ='" + ddlAnio.Text + "',@qna ='" + ddlQna.Text + "'", conexionBD);
                                                 conexionBD.Open();
 
                                                 qNomSJ.Fill(dtNomSJ);

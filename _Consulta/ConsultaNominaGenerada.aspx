@@ -22,7 +22,7 @@
                                     <label class="control-label">Jurisdicción</label>
                                     <asp:DropDownList runat="server" ID="ddlJuris" CssClass="form-control"
                                         Autopostback="true" AppendDataBoundItems="true" 
-                                        DataTextField="claveJuris" aling="center"
+                                        DataTextField="Juris" aling="center"
                                         UseSubmitBehavior="false" OnSelectedIndexChanged="ddlJuris_SelectedIndexChanged">
                                         <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                     </asp:DropDownList>
@@ -101,10 +101,9 @@
                                     <asp:DropDownList runat="server" ID="ddlInstru" CssClass="form-control"
                                         AutoPostBack="true" AppendDataBoundItems="true" Enabled="false"
                                         DataTextField="instrumento" aling="center"
-                                        UseSubmitBehavior="false">
+                                        UseSubmitBehavior="false" >
                                         <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                     </asp:DropDownList>
-
                                 </div>
 
                                 <div class="form-group col-xs-12 col-md-12 col-lg-12">
@@ -260,7 +259,7 @@
 
                                                           <asp:TemplateField HeaderText="Fecha de impresión" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="columFechaApli" runat="server" Text='<%# Eval("fecha_aplicacion") %>'></asp:Label>
+                                                                <asp:Label ID="columFechaApli" runat="server" Text='<%# Eval("fecha_impresion") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                         </asp:TemplateField>
