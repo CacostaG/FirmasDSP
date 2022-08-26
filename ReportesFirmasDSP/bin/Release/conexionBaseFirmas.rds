@@ -3,7 +3,6 @@
   <ConnectionProperties>
     <Extension>SQL</Extension>
     <ConnectString>Data Source=10.30.17.78;Initial Catalog=SistematizacionLocal</ConnectString>
-    <Prompt>Especifique un nombre de usuario y una contraseña para el origen de datos conexionBaseFirmas:</Prompt>
   </ConnectionProperties>
   <DataSourceID>c31515ef-d01e-4334-8c89-ffe89e2eb151</DataSourceID>
 </RptDataSource>

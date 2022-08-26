@@ -34,7 +34,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>Pry1015_ImprimeListadoCheques</CommandText>
+        <CommandText>spDSP_GeneraListadoCheques</CommandText>
       </Query>
       <Fields>
         <Field Name="numReg">
@@ -43,23 +43,23 @@
         </Field>
         <Field Name="cheque_detalle_id">
           <DataField>cheque_detalle_id</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="producto_nomina_id">
           <DataField>producto_nomina_id</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="jurisdiccion_id">
-          <DataField>jurisdiccion_id</DataField>
+        <Field Name="jurisdiccionid">
+          <DataField>JurisdiccionID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="anio">
           <DataField>anio</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="qna">
           <DataField>qna</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="nomina">
           <DataField>nomina</DataField>
@@ -73,16 +73,8 @@
           <DataField>prdname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="clave">
-          <DataField>clave</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="nombreJuris">
           <DataField>nombreJuris</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="claveJuris">
-          <DataField>claveJuris</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="rfcTrabajador">
@@ -155,7 +147,7 @@
                                   <Value>=Fields!centroRes.Value &amp; " - " &amp; Fields!nombre_cr.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>6pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -178,6 +170,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>3</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1667,7 +1660,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!claveJuris.Value, "dsReporteListado")</Value>
+                      <Value>=First(Fields!nombreJuris.Value, "dsReporteListado")</Value>
                       <Style>
                         <FontFamily>Arial</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -1930,7 +1923,6 @@ DEPARTAMENTO DE SISTEMATIZACIÓN DE PAGOS</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox86</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>0.79056cm</Left>
               <Height>0.6cm</Height>
               <Width>2.65466cm</Width>
