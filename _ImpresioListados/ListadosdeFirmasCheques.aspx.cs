@@ -75,6 +75,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
             dvMessagePrdname.Visible = false;
 
             SqlCommand cmdCR = new SqlCommand("spDSP_DisponibleJurisChequeReporte", conexionBD);
+            cmdCR.CommandTimeout = 120;
             SqlDataAdapter sdCR = new SqlDataAdapter(cmdCR);
             DataTable dtCR = new DataTable();
             sdCR.Fill(dtCR);
@@ -120,6 +121,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlAnio.Items.Add("Selecciona");
 
                 SqlCommand cmdAnio = new SqlCommand("spDSP_DisponibleAnioChequeReporte @juris='" + ddlJURISid.Text + "'", conexionBD);
+                cmdAnio.CommandTimeout = 120;
                 SqlDataAdapter sdAnio = new SqlDataAdapter(cmdAnio);
                 DataTable dtAnio = new DataTable();
                 sdAnio.Fill(dtAnio);
@@ -186,6 +188,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlQuincena.Items.Clear();
                 ddlQuincena.Items.Add("Selecciona");
                 SqlCommand cmQuincena = new SqlCommand("spDSP_DisponibleQnaChequeReporte @anio='" + ddlAnio.Text + "' ,@juris='" + ddlJURISid.Text + "'", conexionBD);
+                cmQuincena.CommandTimeout = 120;
                 SqlDataAdapter sdQuincena = new SqlDataAdapter(cmQuincena);
                 DataTable dtQuincena = new DataTable();
                 sdQuincena.Fill(dtQuincena);
@@ -247,6 +250,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlTipo.Items.Clear();
                 ddlTipo.Items.Add("Selecciona");
                 SqlCommand cmdTipo = new SqlCommand("spDSP_DisponibleTipoChequeReporte @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @juris='" + ddlJURISid.Text + "'", conexionBD);
+                cmdTipo.CommandTimeout = 120;
                 SqlDataAdapter sdTipo = new SqlDataAdapter(cmdTipo);
                 DataTable dtTipo = new DataTable();
                 sdTipo.Fill(dtTipo);
@@ -302,6 +306,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlNomina.Items.Clear();
                 ddlNomina.Items.Add("Selecciona");
                 SqlCommand cmdNomina = new SqlCommand("spDSP_DisponibleNominaChequeReporte @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @juris='" + ddlJURISid.Text + "' ,@tipoPago ='" + ddlTipo.Text + "'", conexionBD);
+                cmdNomina.CommandTimeout = 120;
                 SqlDataAdapter sdNomina = new SqlDataAdapter(cmdNomina);
                 DataTable dtNomina = new DataTable();
                 sdNomina.Fill(dtNomina);
@@ -349,6 +354,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlUR.Items.Clear();
                 ddlUR.Items.Add("Selecciona");
                 SqlCommand cmUR = new SqlCommand("spDSP_DisponibleUrChequeReporte @anio='" + ddlAnio.Text + "'  ,@qna='" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@juris='" + ddlJURISid.Text + "' ,@tipoPago ='" + ddlTipo.Text + "'", conexionBD);
+                cmUR.CommandTimeout = 120;
                 SqlDataAdapter sdUR = new SqlDataAdapter(cmUR);
                 DataTable dtUR = new DataTable();
                 sdUR.Fill(dtUR);
@@ -381,6 +387,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlPrdname.Items.Clear();
                 ddlPrdname.Items.Add("Selecciona");
                 SqlCommand cmPRDNAME = new SqlCommand("spDSP_DisponiblePrdChequeReporte @anio='" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@ur= '" + ddlUR.Text + "' ,@juris='" + ddlJURISid.Text + "' ,@tipoPago ='" + ddlTipo.Text + "'", conexionBD);
+                cmPRDNAME.CommandTimeout = 120;
                 SqlDataAdapter sdPRDNAME = new SqlDataAdapter(cmPRDNAME);
                 DataTable dtPRDNAME = new DataTable();
                 sdPRDNAME.Fill(dtPRDNAME);
@@ -466,8 +473,13 @@ namespace ListadoDeFirmasDSP._ImpresioListados
             dvMessageUR.Visible = false;
             dvMessageTipo.Visible = false;
 
+            
+
             DataTable tbGeneral = new DataTable();
             SqlDataAdapter consultaGeneralO = new SqlDataAdapter("spDSP_ReporteCheques @juris='" + ddlJURISid.Text + "' ,@anio='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "', @nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' , @prdname='" + ddlPrdname.Text + "' ,@tipo ='" + ddlTipo.Text + "'", conexionBD);
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandTimeout = 120;
+
             conexionBD.Open();
 
             consultaGeneralO.Fill(tbGeneral);
