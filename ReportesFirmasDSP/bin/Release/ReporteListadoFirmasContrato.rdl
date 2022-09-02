@@ -4,10 +4,7 @@
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="conexionBaseFirmas">
-      <ConnectionProperties>
-        <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=10.30.3.236\columba,59127;Initial Catalog=FIRMAS</ConnectString>
-      </ConnectionProperties>
+      <DataSourceReference>conexionBaseFirmas</DataSourceReference>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>375543a6-1597-46a3-a03f-3f01cdb76507</rd:DataSourceID>
     </DataSource>
@@ -17,7 +14,7 @@
       <Query>
         <DataSourceName>conexionBaseFirmas</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@Jurisdiccion">
+          <QueryParameter Name="@jurisdiccion">
             <Value>=Parameters!Jurisdiccion.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@anio">
@@ -43,16 +40,16 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>Pry1015_ImprimeListadoContrato</CommandText>
+        <CommandText>spDSP_ReporteContratos</CommandText>
       </Query>
       <Fields>
         <Field Name="anio">
           <DataField>anio</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="qna">
           <DataField>qna</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="prdname">
           <DataField>prdname</DataField>
@@ -66,8 +63,8 @@
           <DataField>tipo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="jurisdiccion_id">
-          <DataField>jurisdiccion_id</DataField>
+        <Field Name="jurisdiccionid">
+          <DataField>jurisdiccionid</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="clave">
@@ -75,11 +72,11 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nombreJurisdiccion">
-          <DataField>nombreJurisdiccion</DataField>
+          <DataField>Jurisdiccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="claveJuris">
-          <DataField>claveJuris</DataField>
+          <DataField>ClaveJuris</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nombreTrabajador">
@@ -176,16 +173,16 @@
       <Query>
         <DataSourceName>conexionBaseFirmas</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@juris">
+          <QueryParameter Name="@Jurisdiccion">
             <Value>=Parameters!Jurisdiccion.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>Pry1015_ImprimeListadoContratoResponsables</CommandText>
+        <CommandText>spDSP_ReporteContratosResponsables</CommandText>
       </Query>
       <Fields>
         <Field Name="Jurisdiccion">
-          <DataField>Jurisdiccion</DataField>
+          <DataField>JURISDICCION</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="JEFE">
@@ -223,12 +220,12 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>Pry1015_ImprimeListadoContratoPoliza</CommandText>
+        <CommandText>spDSP_ReporteContratosPolizas</CommandText>
       </Query>
       <Fields>
         <Field Name="poliza">
           <DataField>poliza</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1068,6 +1065,7 @@ RESP</Value>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

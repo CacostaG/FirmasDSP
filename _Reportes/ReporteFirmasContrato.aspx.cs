@@ -9,7 +9,7 @@ namespace ListadoDeFirmasDSP._Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["token"] == null)
+            if (UserData.token ==0 )
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -44,8 +44,8 @@ namespace ListadoDeFirmasDSP._Reportes
             string instrumento = Convert.ToString(Session["TicketInstrumento"]);
             string ListaTicket = Convert.ToString(Session["TicketListado"]);
 
-            rvReporteListadoContratos.ServerReport.ReportServerCredentials = new CredencialesReporteria("rss", "Passw0rd");
-            rvReporteListadoContratos.ServerReport.ReportServerUrl = new Uri("http://10.30.3.190/reportserver");
+            rvReporteListadoContratos.ServerReport.ReportServerCredentials = new CredencialesReporteria("Carlos Alberto AG", "Aogc1370");
+            rvReporteListadoContratos.ServerReport.ReportServerUrl = new Uri("http://10.30.17.78/ReportServer");
             rvReporteListadoContratos.ServerReport.ReportPath = "/FIRMAS/ReporteListadoFirmasContrato";
             rvReporteListadoContratos.ShowParameterPrompts = true;
 
@@ -77,7 +77,7 @@ namespace ListadoDeFirmasDSP._Reportes
                 Response.Clear();
                 Response.Buffer = true;
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "inline; filename=ListadoFirmasContrato_" + NominaTicket + "_" + URTicket + "_" +instrumento +"_" + PRDNAMETicket + ".pdf");
+                Response.AddHeader("content-disposition", "inline; filename=ListadoFirmasContrato_" + JurisTicket + "_" + QuincenaTicket + "_" + NominaTicket + "_" + URTicket + "_" + instrumento + "_" + PRDNAMETicket + ".pdf");
                 Response.AddHeader("content-length", bytes.Length.ToString()); Response.BinaryWrite(memoryStream.ToArray());
                 Response.Flush(); Response.End();
             }
