@@ -473,7 +473,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
             gvListadosDeFirmas.Columns[0].Visible = false;/*Culumna Cnmkey*/
             gvListadosDeFirmas.Columns[1].Visible = false;/*Columna Anio*/
             gvListadosDeFirmas.Columns[2].Visible = false;/*Columna Quincena*/
-            gvListadosDeFirmas.Columns[10].Visible = true;/*Columna Tpersonal*/
+            gvListadosDeFirmas.Columns[10].Visible = false;/*Columna Tpersonal*/
             gvListadosDeFirmas.Columns[13].Visible = false;/*Columna ID_Juris*/
             gvListadosDeFirmas.Columns[14].Visible = false;/*Columna Producto_Nomina_ID*/
             gvListadosDeFirmas.Columns[17].Visible = false;/*Columna clavepago*/
@@ -650,7 +650,8 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                         if (checkboxListadosDeFirmasInserta.Checked)
                         {
                             Session["TicketListado"] = "NOMINA GENERADA";
-                            Session["TicketJurisdiccion"] = ddlJURISid.Text;
+                            /*Session["TicketJurisdiccion"] = ddlJURISid.Text;*/
+                            Session["TicketJurisdiccion"] = (row.FindControl("columClaveJuris") as Label).Text;
                             Session["TicketAnio"] = ddlAnio.Text;
                             Session["TicketQuincena"] = ddlQuincena.Text;
                             Session["TicketClaveTipo"] = ddlTipo.Text;
@@ -658,8 +659,9 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                             Session["TicketUR"] = ddlUR.Text;
                             Session["TicketPRDNAME"] = ddlPrdname.Text;
                             Session["TicketInstrumento"] = (row.FindControl("columInstrumento") as Label).Text;
+                            Session["TicketClave"] = ddlJURISid.Text;
 
-                           
+
 
 
                             if (ddlNomina.Text =="CONTRATOS")

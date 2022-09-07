@@ -707,6 +707,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                             Session["TicketNomina"] = ddlNomina.Text;
                             Session["TicketUR"] = ddlUR.Text;
                             Session["TicketPRDNAME"] = ddlPrdname.Text;
+                            Session["TicketClave"] = ddlJURISid.Text;
 
 
 

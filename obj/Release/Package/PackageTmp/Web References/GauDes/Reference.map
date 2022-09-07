@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?wsdl" filename="Gau.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?disco" filename="Gau.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?xsd=xsd1" filename="Gau.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?xsd=xsd0" filename="Gau0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?xsd=xsd3" filename="Gau1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://gaudes.ssaver.gob.mx/wcf/Gau.svc?xsd=xsd2" filename="Gau2.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

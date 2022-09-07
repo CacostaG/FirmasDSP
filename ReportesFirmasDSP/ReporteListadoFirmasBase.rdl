@@ -5,7 +5,7 @@
   <DataSources>
     <DataSource Name="conexionBaseFirmas">
       <DataSourceReference>conexionBaseFirmas</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>f9262d32-196c-4eeb-8576-81fef91bdfe9</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -133,7 +133,7 @@
         </Field>
         <Field Name="fecha_pago">
           <DataField>fecha_pago</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="poliza">
           <DataField>poliza</DataField>
@@ -141,7 +141,7 @@
         </Field>
         <Field Name="contador">
           <DataField>contador</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -609,7 +609,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!cr.Value</Value>
+                                  <Value>=Fields!cr.Value &amp; " - "</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -786,7 +786,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!ur.Value</Value>
+                                  <Value>=Fields!ur.Value &amp; " - "</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -959,7 +959,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!inmdo.Value</Value>
+                                  <Value>=Fields!inmdo.Value &amp; " - "</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>

@@ -43,6 +43,7 @@ namespace ListadoDeFirmasDSP._Reportes
             string PRDNAMETicket = Convert.ToString(Session["TicketPRDNAME"]);
             string instrumento = Convert.ToString(Session["TicketInstrumento"]);
             string ListaTicket = Convert.ToString(Session["TicketListado"]);
+            string claveJurisTicket = Convert.ToString(Session["TicketClave"]);
 
             rvReporteListadoContratos.ServerReport.ReportServerCredentials = new CredencialesReporteria("Carlos Alberto AG", "Aogc1370");
             rvReporteListadoContratos.ServerReport.ReportServerUrl = new Uri("http://10.30.17.78/ReportServer");
@@ -77,7 +78,7 @@ namespace ListadoDeFirmasDSP._Reportes
                 Response.Clear();
                 Response.Buffer = true;
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "inline; filename=ListadoFirmasContrato_" + JurisTicket + "_" + QuincenaTicket + "_" + NominaTicket + "_" + URTicket + "_" + instrumento + "_" + PRDNAMETicket + ".pdf");
+                Response.AddHeader("content-disposition", "inline; filename=\"" + "ListadoFirmasContrato_" + claveJurisTicket + "_" + QuincenaTicket + "_" + NominaTicket + "_" + URTicket + "_" + instrumento + "_" + PRDNAMETicket + ".pdf" + "\"");
                 Response.AddHeader("content-length", bytes.Length.ToString()); Response.BinaryWrite(memoryStream.ToArray());
                 Response.Flush(); Response.End();
             }

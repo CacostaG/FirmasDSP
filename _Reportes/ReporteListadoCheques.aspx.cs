@@ -39,6 +39,7 @@ namespace ListadoDeFirmasDSP._Reportes
                 string NominaTicket = Convert.ToString(Session["TicketNomina"]);
                 string URTicket = Convert.ToString(Session["TicketUR"]);
                 string PRDNAMETicket = Convert.ToString(Session["TicketPRDNAME"]);
+                string claveJurisTicket = Convert.ToString(Session["TicketClave"]);
 
 
                 rvListadoCheques.ServerReport.ReportServerCredentials = new CredencialesReporteria("Carlos Alberto AG", "Aogc1370");
@@ -56,6 +57,7 @@ namespace ListadoDeFirmasDSP._Reportes
                 ColeccionDeParametrosTicket.Add(new ReportParameter("nomina", NominaTicket));
                 ColeccionDeParametrosTicket.Add(new ReportParameter("ur", URTicket));
                 ColeccionDeParametrosTicket.Add(new ReportParameter("prdname", PRDNAMETicket));
+                
 
 
 
@@ -73,7 +75,7 @@ namespace ListadoDeFirmasDSP._Reportes
                     Response.Clear();
                     Response.Buffer = true;
                     Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-disposition", "inline; filename=ListadoCheques" + NominaTicket + "_" + URTicket + "_" + PRDNAMETicket + ".pdf");
+                    Response.AddHeader("content-disposition", "inline; filename=\"" + "ListadoCheques_" + claveJurisTicket + "_" + QuincenaTicket + "_" + NominaTicket + "_" + URTicket + "_"  + PRDNAMETicket + ".pdf" + "\"");
                     Response.AddHeader("content-length", bytes.Length.ToString()); Response.BinaryWrite(memoryStream.ToArray());
                     Response.Flush(); Response.End();
                 }
