@@ -11,8 +11,8 @@ namespace ListadoDeFirmasDSP._Administracion
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if ((UserData.token ==0))
+           
+            if (Session["token"] == null)
 
             {
                 Response.Redirect("~/InicioSesion.aspx");
@@ -21,10 +21,13 @@ namespace ListadoDeFirmasDSP._Administracion
             else
             {
                 
+                
+                Session["user"] = UserData.Usuario;
+                User.Text = Session["user"].ToString();
                 if (!IsPostBack)
                 {
 
-                    var rol = (string)UserData.TipoUsuario;
+                    var rol = Session["rol"];
                     switch (rol)
                     {
                         case "Validador":

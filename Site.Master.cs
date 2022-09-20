@@ -12,7 +12,7 @@ namespace ListadoDeFirmasDSP
         protected void Page_Load(object sender, EventArgs e)
         {
 
-          if (UserData.token == 0 )
+          if (Session["token"] == null)
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -20,12 +20,17 @@ namespace ListadoDeFirmasDSP
             {
                 if (!IsPostBack)
                 {
-                    /*
-                    rol.Text = Session["TipoUsuario"].ToString();
-                    nombreUsuario2.Text = Session["nombre"].ToString();
-                    jurisid.Text = Session["jurisdiccion_id"].ToString();*/
+                    Session["rol"] = UserData.TipoUsuario;
+                    rol.Text = Session["rol"].ToString();
 
-                    string Rol = (string)UserData.TipoUsuario;
+                    Session["nombre"] = UserData.nombre;
+                    nombreUsuario2.Text = Session["nombre"].ToString();
+
+                    Session["jurisdiccion_id"] = UserData.jurisdiccion_id;
+                    jurisid.Text = Session["jurisdiccion_id"].ToString();
+
+                    
+                    string Rol = (string)Session["rol"];
                     switch (Rol)
                     {
                         case "Administrador":

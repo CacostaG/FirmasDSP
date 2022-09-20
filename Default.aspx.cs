@@ -12,23 +12,22 @@ namespace ListadoDeFirmasDSP
         protected void Page_Load(object sender, EventArgs e)
 
         {
-            /*
 
-            if (Session["token"] ==null)
+
+            if (Session["token"] == null)
             {
-                
-                Response.Redirect("~/InicioSesion.aspx");
-                
 
-               
+                Response.Redirect("~/InicioSesion.aspx");
+
 
             }
 
 
+
             else
             {
-                
-            }*/
+               
+            }
 
         }
     }

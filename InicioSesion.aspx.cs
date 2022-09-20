@@ -24,10 +24,7 @@ namespace ListadoDeFirmasDSP
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
-             
-             
-             */
+         
 
 
         }
@@ -39,9 +36,7 @@ namespace ListadoDeFirmasDSP
             Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
             Response.Cache.SetAllowResponseInBrowserHistory(false);
             Response.Cache.SetNoStore();
-
-
-
+            
             try
             {
                 if (txtUser.Text != "Usuario" || string.IsNullOrEmpty(txtUser.Text))
@@ -53,8 +48,42 @@ namespace ListadoDeFirmasDSP
                         if (validLogin == true)
                         {
                             
-                            Response.Redirect("~/Default");
                             
+                            Session["token"] = UserData.token;
+                            Session["estatus"] = UserData.Estatus;
+                            Session["user"] = UserData.Usuario;
+
+                            var estatus = Session["estatus"];
+                            var token = Session["token"];
+                            var usuario = Session["user"];
+
+                            switch (estatus)
+                            {
+                                case "ACTIVO":
+                                    Response.Redirect("~/Default");
+
+                                    
+                                    Session["idUsuario"] = UserData.idUsuario;
+                                    Session["jurisdiccion_id"] = UserData.jurisdiccion_id;
+                                    Session["nombre"] = UserData.nombre;
+                                    
+                                    Session["nombreJuris"] = UserData.NombreJuris;
+                                    Session["rol"] = UserData.TipoUsuario;
+
+
+
+                                    var idUsuario = Session["idUsuario"];
+                                    var jurisdiccion_id = Session["jurisdiccion_id"];
+                                    var nombre = Session["nombre"];
+                                    
+                                    var nombreJuris = Session["nombreJuris"];
+                                    var rol = Session["rol"];
+                                    break;
+                                case "INACTIVO":
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'Usuario DESHABILITADO' , 'warning');", true);
+                                    break;
+                            }
+
                         }
                         else
                         {
@@ -73,15 +102,7 @@ namespace ListadoDeFirmasDSP
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('!', '" + ex.Message + "' , 'warning');", true);
             }
 
-       
-
-
         }
-
-
-     
-
-
         /*
 
         GAU.GauClient gauClient = new GAU.GauClient();
@@ -181,5 +202,7 @@ namespace ListadoDeFirmasDSP
 
 
     }
-           
+
+   
+
 }

@@ -10,7 +10,7 @@
     <script src="../Scripts/sweetalert.min.js"></script>
     <link href="../css/sweetalert.css" rel="stylesheet" />
 
-    <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="false"></asp:Label>
+    <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="true"></asp:Label>
 
     
 
@@ -220,6 +220,10 @@
 
                                                         <h4 class="modal-title">
                                                             <center>¿Desea continuar?</center>
+                                                       
+                                                            <h4></h4>
+                                                       
+                                                            <h4></h4>
                                                        
                                                             <h4></h4>
                                                        

@@ -11,18 +11,18 @@ namespace ListadoDeFirmasDSP._ImpresioListados
 
 
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-
             /*
-            if (Session["token"] == null)
+            
+            if (UserData.token == 0)
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
             else
             {
-                User.Text = Session["user"].ToString();
+                var rol = (string)UserData.TipoUsuario;
                 txtIdJurisdiccion.Text = Session["jurisdiccion_id"].ToString();
                 txtIdJurisdiccion.Visible = false;
                 if (!IsPostBack)
@@ -46,7 +46,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
 
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
-            SqlCommand cmdAnio = new SqlCommand("EXEC Pry1015_ParametroListadosDeFirmasChequeAnio @jurisdiccion_id='" + txtIdJurisdiccion.Text + "'", conexionBD);
+            SqlCommand cmdAnio = new SqlCommand("spDSP_DisponibleAnioChequeReporte @juris='" + txtIdJurisdiccion.Text + "'", conexionBD);
             SqlDataAdapter sdAnio = new SqlDataAdapter(cmdAnio);
             DataTable dtAnio = new DataTable();
             sdAnio.Fill(dtAnio);

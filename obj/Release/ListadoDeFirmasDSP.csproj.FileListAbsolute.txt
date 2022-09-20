@@ -202,6 +202,7 @@ C:\DEVLOCAL\FirmasDSP\bin\AspNet.ScriptManager.bootstrap.dll
 C:\DEVLOCAL\FirmasDSP\bin\AspNet.ScriptManager.jQuery.dll
 C:\DEVLOCAL\FirmasDSP\bin\Elmah.dll
 C:\DEVLOCAL\FirmasDSP\bin\IdentityModel.dll
+C:\DEVLOCAL\FirmasDSP\bin\LinqToExcel.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.Bcl.AsyncInterfaces.dll
@@ -218,6 +219,9 @@ C:\DEVLOCAL\FirmasDSP\bin\Microsoft.ScriptManager.WebForms.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.SqlServer.Types.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.Web.Infrastructure.dll
 C:\DEVLOCAL\FirmasDSP\bin\Newtonsoft.Json.dll
+C:\DEVLOCAL\FirmasDSP\bin\Remotion.Data.Linq.dll
+C:\DEVLOCAL\FirmasDSP\bin\Remotion.dll
+C:\DEVLOCAL\FirmasDSP\bin\Remotion.Interfaces.dll
 C:\DEVLOCAL\FirmasDSP\bin\System.Buffers.dll
 C:\DEVLOCAL\FirmasDSP\bin\System.Memory.dll
 C:\DEVLOCAL\FirmasDSP\bin\System.Numerics.Vectors.dll
@@ -238,6 +242,7 @@ C:\DEVLOCAL\FirmasDSP\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.MSXML.dll
 C:\DEVLOCAL\FirmasDSP\bin\IdentityModel.pdb
 C:\DEVLOCAL\FirmasDSP\bin\IdentityModel.xml
+C:\DEVLOCAL\FirmasDSP\bin\LinqToExcel.xml
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.Bcl.AsyncInterfaces.xml
 C:\DEVLOCAL\FirmasDSP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\DEVLOCAL\FirmasDSP\bin\Newtonsoft.Json.xml

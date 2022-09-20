@@ -36,10 +36,9 @@ namespace ListadoDeFirmasDSP
                     command.Parameters.AddWithValue("@pass", pass);
                     command.CommandType = CommandType.StoredProcedure;
                     SqlDataReader reader = command.ExecuteReader();
-                    if(reader.HasRows)
+                    if(reader.Read())
                     {
-                        while(reader.Read())
-                        {
+                        
                             UserData.token = reader.GetInt32(0);
                             UserData.idUsuario = reader.GetInt32(1);
                             UserData.jurisdiccion_id = reader.GetInt32(2);
@@ -51,7 +50,7 @@ namespace ListadoDeFirmasDSP
                             UserData.TipoUsuario = reader.GetString(10);
                           
                             
-                        }
+                        
                         return true;
                     }
                     else

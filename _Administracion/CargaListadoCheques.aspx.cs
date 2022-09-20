@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using System.Linq;
 using System.Web;
+using System.IO;
 
 namespace ListadoDeFirmasDSP._Administracion
 {
@@ -310,14 +311,48 @@ namespace ListadoDeFirmasDSP._Administracion
         }
         /*boton Visualiza excel*/
         protected void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (cargaArchivo.PostedFile != null)
+        {/*
+            Byte[] Archivo = null;
+           
+            if (cargaArchivo.HasFile == true)
             {
-                try
+                using (BinaryReader reader = new
+                BinaryReader(cargaArchivo.PostedFile.InputStream))
                 {
+                    Archivo = reader.ReadBytes(cargaArchivo.PostedFile.ContentLength);
                     string path = string.Concat(Server.MapPath("~/ImportDocument/" + cargaArchivo.FileName));
                     cargaArchivo.SaveAs(path);
                     string excelCS = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+                    DataTable dtGV = new DataTable();
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        con.Open();
+                        dtGV = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                        string hoja = dtGV.Rows[0].Field<string>("TABLE_NAME");
+                        OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter($"select * from [{hoja}]", con);
+                        DataTable datos = new DataTable();
+                        dbDataAdapter.Fill(datos);
+                        gvListadoCheques.DataSource = datos;
+                        gvListadoCheques.DataBind();
+                        gvListadoCheques.Visible = true;
+
+
+                    }
+                }
+               
+            }
+
+            */
+
+            if (/*cargaArchivo.PostedFile != null*/
+                cargaArchivo.HasFile == true)
+            {
+                try
+                {
+                    
+                    string path = string.Concat(Server.MapPath("~/ImportDocument/" + cargaArchivo.FileName));
+                    cargaArchivo.SaveAs(path);
+                    string excelCS = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 5.0", path);
                     DataTable dtGV = new DataTable();
                     using (OleDbConnection con = new OleDbConnection(excelCS))
                     {
