@@ -9,7 +9,7 @@ namespace ListadoDeFirmasDSP._Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["token"] == null)
+            if (!Convert.ToBoolean(Session["token"]))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -40,8 +40,8 @@ namespace ListadoDeFirmasDSP._Reportes
             string instrumento  = Convert.ToString(Session["TicketInstrumento"]);
             string ListaTicket = Convert.ToString(Session["TicketListado"]);
 
-            rvTicketdeImpresion.ServerReport.ReportServerCredentials = new CredencialesReporteria("rss", "Passw0rd");
-            rvTicketdeImpresion.ServerReport.ReportServerUrl = new Uri("http://10.30.3.190/reportserver");
+            rvTicketdeImpresion.ServerReport.ReportServerCredentials = new CredencialesReporteria("Carlos Alberto AG", "Aogc1370");
+            rvTicketdeImpresion.ServerReport.ReportServerUrl = new Uri("http://10.30.17.78/ReportServer");
             rvTicketdeImpresion.ServerReport.ReportPath = "/FIRMAS/TiketListadoDeFirmas";
             rvTicketdeImpresion.ShowParameterPrompts = true;
 
@@ -55,7 +55,7 @@ namespace ListadoDeFirmasDSP._Reportes
             ColeccionDeParametrosTicket.Add(new ReportParameter("nomina", NominaTicket));
             ColeccionDeParametrosTicket.Add(new ReportParameter("ur", URTicket));
             ColeccionDeParametrosTicket.Add(new ReportParameter("prdname", PRDNAMETicket));
-            ColeccionDeParametrosTicket.Add(new ReportParameter("instrumento", instrumento));
+            ColeccionDeParametrosTicket.Add(new ReportParameter("instrumento_pago", instrumento));
             ColeccionDeParametrosTicket.Add(new ReportParameter("lista", ListaTicket));
 
             rvTicketdeImpresion.ServerReport.SetParameters(ColeccionDeParametrosTicket);

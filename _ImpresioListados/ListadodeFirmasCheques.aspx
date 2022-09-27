@@ -24,7 +24,7 @@
     </script>
 
 
-  <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="false"></asp:Label>
+  <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="true"></asp:Label>
     <asp:Label ID="txtIdJurisdiccion" runat="server" Text='<%#Session["jurisdiccion_id"]%>' ></asp:Label>
     <asp:Label ID="txtCheckDeposito" runat="server" Text='' ></asp:Label>
      <asp:Label ID="txtCheckCheque" runat="server" Text='' ></asp:Label>
@@ -82,7 +82,7 @@
                                     <div class="form-group col-xs-12 col-md-6 col-lg-2">
                                         <label class="control-label">Tipo </label>
                                         <asp:DropDownList ID="ddlTipo" runat="server"
-                                            AppendDataBoundItems="True" DataTextField="ClavePago" CssClass="form-control" align="center" AutoPostBack="True"
+                                            AppendDataBoundItems="True" DataTextField="tipoPago" CssClass="form-control" align="center" AutoPostBack="True"
                                             OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged"  Enabled="false">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                         </asp:DropDownList>
@@ -251,7 +251,7 @@
 
                                                                 <asp:TemplateField HeaderText="ID_Juris" ItemStyle-HorizontalAlign="Center">
                                                                     <ItemTemplate>
-                                                                        <asp:Label ID="columD_Juris" runat="server" Text='<%# Eval("jurisdiccion_id") %>'></asp:Label>
+                                                                        <asp:Label ID="columD_Juris" runat="server" Text='<%# Eval("jurisdiccionid") %>'></asp:Label>
                                                                     </ItemTemplate>
 
                                                                     <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -283,7 +283,7 @@
 
                                                                    <asp:TemplateField HeaderText="claveJuris" ItemStyle-HorizontalAlign="Center">
                                                                     <ItemTemplate>
-                                                                        <asp:Label ID="columClaveJuris" runat="server" Text='<%# Eval("ClaveJuris") %>'></asp:Label>
+                                                                        <asp:Label ID="columClaveJuris" runat="server" Text='<%# Eval("juris") %>'></asp:Label>
                                                                     </ItemTemplate>
 
                                                                     <ItemStyle HorizontalAlign="Center"></ItemStyle>

@@ -11,13 +11,12 @@ namespace ListadoDeFirmasDSP
         UserDAO UserDAO = new UserDAO();
 
 
-        public bool LoginUser(string usuario, string pass)
+        public UserData LoginUser(string usuario, string pass)
         {
             return UserDAO.Login(usuario, pass);
         }
 
 
-        
 
     }
 

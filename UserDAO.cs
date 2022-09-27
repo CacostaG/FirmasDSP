@@ -21,11 +21,12 @@ namespace ListadoDeFirmasDSP
 {
     public class UserDAO
     {
-        public bool Login(string usuario, string pass)
+
+        public UserData Login(string usuario, string pass)
         {
             SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
 
-            using(var conDB = conexionBD)
+            using (var conDB = conexionBD)
             {
                 conDB.Open();
                 using (var cmd = new SqlCommand())
@@ -36,28 +37,32 @@ namespace ListadoDeFirmasDSP
                     command.Parameters.AddWithValue("@pass", pass);
                     command.CommandType = CommandType.StoredProcedure;
                     SqlDataReader reader = command.ExecuteReader();
-                    if(reader.Read())
+                    UserData userData = new UserData();
+                    if (reader.Read())
                     {
-                        
-                            UserData.token = reader.GetInt32(0);
-                            UserData.idUsuario = reader.GetInt32(1);
-                            UserData.jurisdiccion_id = reader.GetInt32(2);
-                            UserData.nombre = reader.GetString(3);
-                            UserData.Usuario = reader.GetString(4);
-                            UserData.Estatus = reader.GetString(7);
-                            UserData.clave = reader.GetString(8);
-                            UserData.NombreJuris = reader.GetString(9);
-                            UserData.TipoUsuario = reader.GetString(10);
-                          
-                            
-                        
-                        return true;
+
+                        userData.token = reader.GetInt32(0);
+                        userData.idUsuario = reader.GetInt32(1);
+                        userData.jurisdiccion_id = reader.GetInt32(2);
+                        userData.nombre = reader.GetString(3);
+                        userData.Usuario = reader.GetString(4);
+                        userData.Estatus = reader.GetString(7);
+                        userData.clave = reader.GetString(8);
+                        userData.NombreJuris = reader.GetString(9);
+                        userData.TipoUsuario = reader.GetString(10);
+
+
+
+
+                        return userData;
+                     
                     }
                     else
                     {
-                        return false;
+                        /*userData.token = reader.GetInt32(0);*/
+                        return userData;
                     }
-                    
+
 
                 }
             }
@@ -67,7 +72,7 @@ namespace ListadoDeFirmasDSP
 
 
 
-  
+
 
     }
 }

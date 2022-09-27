@@ -15,8 +15,8 @@ namespace ListadoDeFirmasDSP._ImpresioListados
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-            if (UserData.token == 0)
+
+            if (!Convert.ToBoolean(Session["token"]))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -26,7 +26,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 /*   jurisid.Text = Session["jurisdiccion_id"].ToString();*/
                 if (!IsPostBack)
                 {
-                    var rol = (string)UserData.TipoUsuario;
+                    var rol = (string)Session["rol"];
                     switch (rol)
                     {
                         case "Validador":

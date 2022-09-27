@@ -12,16 +12,20 @@ namespace ListadoDeFirmasDSP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
-            Session.Clear();
-            Session.Abandon();
-            System.Web.Security.FormsAuthentication.SignOut();
-            Response.Redirect("~/InicioSesion.aspx");
-            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
 
-           
             
+
+            /*
+             Session.Clear();
+             Session.Abandon();
+             System.Web.Security.FormsAuthentication.SignOut();
+             Response.Redirect("~/InicioSesion.aspx");
+             Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+          */
+
+            Session.RemoveAll();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            System.Web.Security.FormsAuthentication.SignOut();
             Response.Redirect("~/InicioSesion.aspx");
 
         }

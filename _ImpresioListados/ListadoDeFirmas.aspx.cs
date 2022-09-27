@@ -8,21 +8,23 @@ namespace ListadoDeFirmasDSP._ImpresioListados
 {
     public partial class ListadoDeFirmas : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            if (Session["token"] == null)
+        {
+            if (!Convert.ToBoolean(Session["token"]))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
             else
             {
-                User.Text = Session["user"].ToString();
+                var rol = (string)Session["rol"];
                 txtIdJurisdiccion.Text = Session["jurisdiccion_id"].ToString();
                 txtIdJurisdiccion.Visible = false;
+                User.Text = Session["user"].ToString();
+                User.Visible = false;
                 if (!IsPostBack)
                 {
-                    var rol = Session["rol"];
+                 
                     switch (rol)
                     {
                         case "Validador":
@@ -34,14 +36,14 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                     }
                     Parametros();
                 }
-            }*/
+            }
         }
         private void Parametros() 
         {
             
             ddlAnio.Items.Clear();
             ddlAnio.Items.Add("Selecciona");
-            SqlCommand cmdAnio = new SqlCommand("EXEC Pry1015_ParametrosImpresionListados_Ejercicio  @jurisdiccion_id='" + txtIdJurisdiccion.Text + "'", conexionBD);
+            SqlCommand cmdAnio = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosAnioxJuris  @juris='" + txtIdJurisdiccion.Text + "'", conexionBD);
             SqlDataAdapter sdAnio = new SqlDataAdapter(cmdAnio);
             DataTable dtAnio = new DataTable();
             sdAnio.Fill(dtAnio);
@@ -107,7 +109,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlQuincena.Enabled = true;
                 ddlQuincena.Items.Clear();
                 ddlQuincena.Items.Add("Selecciona");
-                SqlCommand cmQuincena = new SqlCommand("EXEC Pry1015_ParametrosImpresionListados_Quincena @anio='" + ddlAnio.Text + "' ,@jurisdiccion_id='" + txtIdJurisdiccion.Text + "'", conexionBD);
+                SqlCommand cmQuincena = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosQnaxJuris @anio='" + ddlAnio.Text + "' ,@juris='" + txtIdJurisdiccion.Text + "'", conexionBD);
                 SqlDataAdapter sdQuincena = new SqlDataAdapter(cmQuincena);
                 DataTable dtQuincena = new DataTable();
                 sdQuincena.Fill(dtQuincena);
@@ -182,7 +184,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlTipo.Enabled = true;
                 ddlTipo.Items.Clear();
                 ddlTipo.Items.Add("Selecciona");
-                SqlCommand cmdTipo = new SqlCommand("EXEC Pry1015_ParametrosImpresionListados_Tipo @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @jurisdiccion_id='" + txtIdJurisdiccion.Text + "'", conexionBD);
+                SqlCommand cmdTipo = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosTipoxJuris @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @juris='" + txtIdJurisdiccion.Text + "'", conexionBD);
                 SqlDataAdapter sdTipo = new SqlDataAdapter(cmdTipo);
                 DataTable dtTipo = new DataTable();
                 sdTipo.Fill(dtTipo);
@@ -248,7 +250,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlNomina.Enabled = true;
                 ddlNomina.Items.Clear();
                 ddlNomina.Items.Add("Selecciona");
-                SqlCommand cmdNomina = new SqlCommand("EXEC Pry1015_ParametrosImpresionListados_Nomina @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @jurisdiccion_id='" + txtIdJurisdiccion.Text + "' ,@ClavePago ='" + ddlTipo.Text + "'", conexionBD);
+                SqlCommand cmdNomina = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosNominaxJuris @anio='" + ddlAnio.Text + "'  , @qna='" + ddlQuincena.Text + "' , @juris='" + txtIdJurisdiccion.Text + "' ,@tipo ='" + ddlTipo.Text + "'", conexionBD);
                 SqlDataAdapter sdNomina = new SqlDataAdapter(cmdNomina);
                 DataTable dtNomina = new DataTable();
                 sdNomina.Fill(dtNomina);
@@ -298,7 +300,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlUR.Enabled = true;
                 ddlUR.Items.Clear();
                 ddlUR.Items.Add("Selecciona");
-                SqlCommand cmUR = new SqlCommand("exec Pry1015_ParametrosImpresionListados_UnidadResponsable @anio='" + ddlAnio.Text + "'  ,@qna='" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@jurisdiccion_id='" + txtIdJurisdiccion.Text + "' ,@ClavePago ='" + ddlTipo.Text + "'", conexionBD);
+                SqlCommand cmUR = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosUrxJuris @anio='" + ddlAnio.Text + "'  ,@qna='" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@juris='" + txtIdJurisdiccion.Text + "' ,@tipo ='" + ddlTipo.Text + "'", conexionBD);
                 SqlDataAdapter sdUR = new SqlDataAdapter(cmUR);
                 DataTable dtUR = new DataTable();
                 sdUR.Fill(dtUR);
@@ -334,7 +336,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 ddlPrdname.Enabled = true;
                 ddlPrdname.Items.Clear();
                 ddlPrdname.Items.Add("Selecciona");
-                SqlCommand cmPRDNAME = new SqlCommand("exec Pry1015_ParametrosImpresionListados_ProductoDeNomina @anio='" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@ur= '" + ddlUR.Text + "' ,@jurisdiccion_id='" + txtIdJurisdiccion.Text + "' ,@ClavePago ='" + ddlTipo.Text + "'", conexionBD);
+                SqlCommand cmPRDNAME = new SqlCommand("spDSP_ListadoProductoNominaPagosCompletosPrdnamexJuris @anio='" + ddlAnio.Text + "' ,@qna= '" + ddlQuincena.Text + "' ,@nomina = '" + ddlNomina.Text + "' ,@ur= '" + ddlUR.Text + "' ,@juris='" + txtIdJurisdiccion.Text + "' ,@tipo ='" + ddlTipo.Text + "'", conexionBD);
                 SqlDataAdapter sdPRDNAME = new SqlDataAdapter(cmPRDNAME);
                 DataTable dtPRDNAME = new DataTable();
                 sdPRDNAME.Fill(dtPRDNAME);
@@ -410,7 +412,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
         {
 
             DataTable tbGeneral = new DataTable();
-            SqlDataAdapter consultaGeneralO = new SqlDataAdapter("exec Pry1015_ImpresionListados_Busqueda  @jurisdiccion_id='" + txtIdJurisdiccion.Text + "' ,@anio='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "', @nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' , @prdname='" + ddlPrdname.Text + "' ,@ClavePago ='" + ddlTipo.Text + "'", conexionBD);
+            SqlDataAdapter consultaGeneralO = new SqlDataAdapter("spDSP_ListadoProductoNominaPagosCompletosxJuris  @juris='" + txtIdJurisdiccion.Text + "' ,@anio='" + ddlAnio.Text + "' ,@qna='" + ddlQuincena.Text + "', @nomina='" + ddlNomina.Text + "' ,@ur='" + ddlUR.Text + "' , @prdname='" + ddlPrdname.Text + "' ,@tipo ='" + ddlTipo.Text + "'", conexionBD);
             conexionBD.Open();
 
             consultaGeneralO.Fill(tbGeneral);
@@ -418,7 +420,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
             gvListadoDeFirmas.DataSource = tbGeneral;
             gvListadoDeFirmas.DataBind();
 
-            int totaPagos = tbGeneral.AsEnumerable().Sum(row => row.Field<int>("TotalRegistros"));
+            int totaPagos = tbGeneral.AsEnumerable().Sum(row => row.Field<int>("registros"));
             Decimal totaImporteBruto = tbGeneral.AsEnumerable().Sum(row => row.Field<Decimal>("i1"));
             Decimal totaImporteDescuento = tbGeneral.AsEnumerable().Sum(row => row.Field<Decimal>("i2"));
             Decimal totaImporteNeto = tbGeneral.AsEnumerable().Sum(row => row.Field<Decimal>("i3"));
@@ -467,7 +469,7 @@ namespace ListadoDeFirmasDSP._ImpresioListados
             {
                 foreach (GridViewRow row in gvListadoDeFirmas.Rows)
                 {
-                    SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+                    SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
                     conexionBD.Open();
 
                     
@@ -476,12 +478,15 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                     
                     if ( check != null && check.Checked)
                     {
-                        SqlCommand ListadosDeFirmasInserta = new SqlCommand("Pry1015_ListadosDeFirmasInserta", conexionBD);
+
+                        SqlCommand ListadosDeFirmasInserta = new SqlCommand("spDSP_ListadoFirmasInserta", conexionBD);
                         ListadosDeFirmasInserta.CommandType = CommandType.StoredProcedure;
                         ListadosDeFirmasInserta.Parameters.Clear();
 
+
+
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@PRODUCTO_NOMINA_ID", (row.FindControl("columPrudctoNominaID") as Label).Text);
-                        ListadosDeFirmasInserta.Parameters.AddWithValue("@JURISDICCION_ID", (row.FindControl("columD_Juris") as Label).Text);
+                        ListadosDeFirmasInserta.Parameters.AddWithValue("@JURISDICCIONID", (row.FindControl("columD_Juris") as Label).Text);
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@PERCEPCIONES", (row.FindControl("columPercepciones") as Label).Text);
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@DEDUCCIONES", (row.FindControl("columDeducciones") as Label).Text);
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@NETO", (row.FindControl("columNeto") as Label).Text);
@@ -489,7 +494,6 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@INSTRUMENTO_PAGO", (row.FindControl("columInstrumento") as Label).Text);
                         ListadosDeFirmasInserta.Parameters.AddWithValue("@USUARIO", Convert.ToString(User.Text));
                         /*Actualiza.Parameters.Clear();*/
-
                         int respuesta = ListadosDeFirmasInserta.ExecuteNonQuery();
                
                         if (respuesta > 0)

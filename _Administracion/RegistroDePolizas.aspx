@@ -10,7 +10,7 @@
     <script src="../Scripts/sweetalert.min.js"></script>
     <link href="../css/sweetalert.css" rel="stylesheet" />
 
-    <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="true"></asp:Label>
+    <asp:Label ID="User" runat="server" Text='<%#Session["user"]%>' Visible="FALSE"></asp:Label>
 
     
 

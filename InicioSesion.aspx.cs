@@ -20,18 +20,17 @@ using System.Data.SqlClient;
 namespace ListadoDeFirmasDSP
 {
     public partial class InicioSesion : System.Web.UI.Page
-    {
+    {/*
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
-        protected void Page_Load(object sender, EventArgs e)
+       */ protected void Page_Load(object sender, EventArgs e)
         {
-         
-
 
         }
 
     
         public void ValidateUser(object sender, EventArgs e)
         {
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
             Response.Cache.SetAllowResponseInBrowserHistory(false);
@@ -39,48 +38,57 @@ namespace ListadoDeFirmasDSP
             
             try
             {
-                if (txtUser.Text != "Usuario" || string.IsNullOrEmpty(txtUser.Text))
+               if (txtUser.Text !=null || Pass.Text !=null)
                 {
-                    if (Pass.Text != "Contraseña" || string.IsNullOrEmpty(Pass.Text))
+                    if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(Pass.Text))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'No puedes dejar campos vacíos.' , 'warning');", true);
+                    }else
                     {
                         UserModel user = new UserModel();
-                        var validLogin = user.LoginUser(txtUser.Text, Pass.Text);
-                        if (validLogin == true)
+                        UserData validLogin = user.LoginUser(txtUser.Text, Pass.Text);
+
+
+                        if (Convert.ToBoolean(validLogin.token))
                         {
-                            
-                            
-                            Session["token"] = UserData.token;
-                            Session["estatus"] = UserData.Estatus;
-                            Session["user"] = UserData.Usuario;
+
+
+                            Session["token"] = validLogin.token;
+                            Session["estatus"] = validLogin.Estatus;
+                            Session["user"] = validLogin.Usuario;
 
                             var estatus = Session["estatus"];
                             var token = Session["token"];
                             var usuario = Session["user"];
+
+
+                            Session["idUsuario"] = validLogin.idUsuario;
+                            Session["jurisdiccion_id"] = validLogin.jurisdiccion_id;
+                            Session["nombre"] = validLogin.nombre;
+                            Session["nombreJuris"] = validLogin.NombreJuris;
+                            Session["rol"] = validLogin.TipoUsuario;
+
+
+
+                            var idUsuario = Session["idUsuario"];
+                            var jurisdiccion_id = Session["jurisdiccion_id"];
+                            var nombre = Session["nombre"];
+                            var nombreJuris = Session["nombreJuris"];
+                            var rol = Session["rol"];
+
 
                             switch (estatus)
                             {
                                 case "ACTIVO":
                                     Response.Redirect("~/Default");
 
-                                    
-                                    Session["idUsuario"] = UserData.idUsuario;
-                                    Session["jurisdiccion_id"] = UserData.jurisdiccion_id;
-                                    Session["nombre"] = UserData.nombre;
-                                    
-                                    Session["nombreJuris"] = UserData.NombreJuris;
-                                    Session["rol"] = UserData.TipoUsuario;
-
-
-
-                                    var idUsuario = Session["idUsuario"];
-                                    var jurisdiccion_id = Session["jurisdiccion_id"];
-                                    var nombre = Session["nombre"];
-                                    
-                                    var nombreJuris = Session["nombreJuris"];
-                                    var rol = Session["rol"];
                                     break;
                                 case "INACTIVO":
                                     ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'Usuario DESHABILITADO' , 'warning');", true);
+                                    break;
+
+                                default:
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'Contactar al soporte' , 'warning');", true);
                                     break;
                             }
 
@@ -90,12 +98,9 @@ namespace ListadoDeFirmasDSP
                             ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'Necesitas un USUARIO registrado ' , 'warning');", true);
                         }
                     }
-                    else
-                        ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'El formato de la contraseña no es valido.' , 'warning');", true);
-
                 }
-                else
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'No puedes dejar campos vacíos.' , 'warning');", true);
+               
+
             }
             catch (Exception ex)
             {

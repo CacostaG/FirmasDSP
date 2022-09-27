@@ -20,14 +20,14 @@ namespace ListadoDeFirmasDSP
             {
                 if (!IsPostBack)
                 {
-                    Session["rol"] = UserData.TipoUsuario;
-                    rol.Text = Session["rol"].ToString();
+                    string rolSession = Session["rol"]  as string;
+                    rol.Text = rolSession;
 
-                    Session["nombre"] = UserData.nombre;
-                    nombreUsuario2.Text = Session["nombre"].ToString();
+                    string nombreUsuarioSession = Session["nombre"] as string;
+                    nombreUsuario2.Text = nombreUsuarioSession;
 
-                    Session["jurisdiccion_id"] = UserData.jurisdiccion_id;
-                    jurisid.Text = Session["jurisdiccion_id"].ToString();
+                    string jurisdiccion_idSession = Session["jurisdiccion_id"] as string;
+                    jurisid.Text = jurisdiccion_idSession;
 
                     
                     string Rol = (string)Session["rol"];
@@ -103,13 +103,17 @@ namespace ListadoDeFirmasDSP
             PlaceHolder1.Controls.Add(buton);
 
 
-            /*lblModalDatoNombre.Text = Session["nombre"].ToString();
+            lblModalDatoNombre.Text = Session["nombre"].ToString();
             lblModalDatoUsuario.Text = Session["Usuario"].ToString();
             lblModalDatoCorreo.Text = Session["email"].ToString();
-            lblJur.Text = Session["nombreJuris"].ToString();*/
+            lblJur.Text = Session["nombreJuris"].ToString();
 
-            lblModalDatoNombre.Text = UserData.nombre;
-            lblModalDatoUsuario.Text = UserData.Usuario;
+            /*
+            string nombreUsuarioSessionData = Session["nombre"] as string;
+            string usuarioSessionData = Session["usuario"] as string;
+            lblModalDatoNombre.Text = nombreUsuarioSessionData;
+            lblModalDatoUsuario.Text = usuarioSessionData;*/
+
 
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "datosUser", "$('#datosUser').modal('show');", true);
@@ -128,16 +132,12 @@ namespace ListadoDeFirmasDSP
             PlaceHolder1.Controls.Add(buton);
 
 
-            /*lblModalDatoNombre.Text = Session["nombre"].ToString();
-            lblModalDatoUsuario.Text = Session["Usuario"].ToString();
-            lblModalDatoCorreo.Text = Session["email"].ToString();
-            lblJur.Text = Session["nombreJuris"].ToString();*/
+            lblModalDatoNombre.Text = Session["nombre"].ToString();
+            lblModalDatoUsuario.Text = Session["user"].ToString();
+            lblModalDatoCorreo.Text = Session["rol"].ToString();
+            lblJur.Text = Session["nombreJuris"].ToString();
 
-            lblModalDatoNombre.Text = UserData.nombre;
-            lblModalDatoUsuario.Text = UserData.Usuario;
-            lblModalDatoCorreo.Text = UserData.TipoUsuario;
-            lblJur.Text = UserData.NombreJuris;
-
+         
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "datosUser", "$('#datosUser').modal('show');", true);
             upModalUsers.Update();

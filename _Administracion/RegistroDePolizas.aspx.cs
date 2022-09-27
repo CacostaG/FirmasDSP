@@ -12,7 +12,7 @@ namespace ListadoDeFirmasDSP._Administracion
         protected void Page_Load(object sender, EventArgs e)
         {
            
-            if (Session["token"] == null)
+            if (!Convert.ToBoolean(Session["token"]))
 
             {
                 Response.Redirect("~/InicioSesion.aspx");
@@ -20,9 +20,9 @@ namespace ListadoDeFirmasDSP._Administracion
 
             else
             {
-                
-                
-                Session["user"] = UserData.Usuario;
+
+
+
                 User.Text = Session["user"].ToString();
                 if (!IsPostBack)
                 {
@@ -502,7 +502,7 @@ namespace ListadoDeFirmasDSP._Administracion
                 UpdateT.Parameters.AddWithValue("@memorandum", Convert.ToInt64(txtMemo.Text));
                 UpdateT.Parameters.AddWithValue("@poliza", Convert.ToInt64(txtPoliza.Text));
                 // vlaidar usuario con carlos por lo de GUA
-                UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(UserData.Usuario));
+                UpdateT.Parameters.AddWithValue("@usuario", Convert.ToString(Session["user"]));
                 UpdateT.ExecuteNonQuery();
                 /*
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'La operación se ha realizado con éxito.', 'success');", true);

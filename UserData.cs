@@ -5,28 +5,31 @@ using System.Web;
 
 namespace ListadoDeFirmasDSP
 {
-    public  static class UserData
+
+    public class UserData
     {
 
-        public static int token { get; set; }
+        public  int token { get; set; }
 
-        public static int idUsuario { get; set; }
+        public  int idUsuario { get; set; }
 
-        public static int jurisdiccion_id { get; set; }
+        public  int jurisdiccion_id { get; set; }
 
-        public static string nombre { get; set; }
-    
-        public static string Usuario { get; set; }
+        public  string nombre { get; set; }
 
-        public static string Estatus { get; set; }
+        public  string Usuario { get; set; }
 
-        
-        public static string  clave { get; set; }
+        public  string Estatus { get; set; }
 
-        public static string NombreJuris { get; set; }
 
-        public static string TipoUsuario { get; set; }
+        public  string clave { get; set; }
 
+        public  string NombreJuris { get; set; }
+
+        public  string TipoUsuario { get; set; }
 
     }
+
+
+
 }

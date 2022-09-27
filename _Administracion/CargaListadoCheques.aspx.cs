@@ -15,7 +15,7 @@ namespace ListadoDeFirmasDSP._Administracion
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((UserData.token == 0))
+            if (!Convert.ToBoolean(Session["token"]))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
@@ -24,7 +24,7 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 if (!IsPostBack)
                 {
-                    var rol = (string)UserData.TipoUsuario;
+                    var rol = (string)Session["rol"];
                     switch (rol)
                     {
                         case "Validador":
@@ -311,38 +311,7 @@ namespace ListadoDeFirmasDSP._Administracion
         }
         /*boton Visualiza excel*/
         protected void btnSelect_Click(object sender, EventArgs e)
-        {/*
-            Byte[] Archivo = null;
-           
-            if (cargaArchivo.HasFile == true)
-            {
-                using (BinaryReader reader = new
-                BinaryReader(cargaArchivo.PostedFile.InputStream))
-                {
-                    Archivo = reader.ReadBytes(cargaArchivo.PostedFile.ContentLength);
-                    string path = string.Concat(Server.MapPath("~/ImportDocument/" + cargaArchivo.FileName));
-                    cargaArchivo.SaveAs(path);
-                    string excelCS = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
-                    DataTable dtGV = new DataTable();
-                    using (OleDbConnection con = new OleDbConnection(excelCS))
-                    {
-                        con.Open();
-                        dtGV = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                        string hoja = dtGV.Rows[0].Field<string>("TABLE_NAME");
-                        OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter($"select * from [{hoja}]", con);
-                        DataTable datos = new DataTable();
-                        dbDataAdapter.Fill(datos);
-                        gvListadoCheques.DataSource = datos;
-                        gvListadoCheques.DataBind();
-                        gvListadoCheques.Visible = true;
-
-
-                    }
-                }
-               
-            }
-
-            */
+        {
 
             if (/*cargaArchivo.PostedFile != null*/
                 cargaArchivo.HasFile == true)
@@ -425,7 +394,7 @@ namespace ListadoDeFirmasDSP._Administracion
                             save.Parameters.AddWithValue("@Recibo", Convert.ToString(rowL.Cells[4].Text));
                             save.Parameters.AddWithValue("@Centro", Convert.ToString(rowL.Cells[5].Text));
                             save.Parameters.AddWithValue("@NombreCentro", Convert.ToString(rowL.Cells[6].Text));
-                            save.Parameters.AddWithValue("@Usuario", Convert.ToString(UserData.Usuario));
+                            save.Parameters.AddWithValue("@Usuario", Convert.ToString(Session["user"]));
 
 
 

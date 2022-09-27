@@ -9,7 +9,7 @@ namespace ListadoDeFirmasDSP._Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserData.token == 0)
+            if (!Convert.ToBoolean(Session["token"]))
             {
                 Response.Redirect("~/InicioSesion.aspx");
             }
