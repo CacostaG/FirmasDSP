@@ -9,11 +9,11 @@ namespace ListadoDeFirmasDSP._Administracion
 {
     public partial class AdministracionDeUsuarios : System.Web.UI.Page
     {
-        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+        SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
 
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            if (Session["token"] == null)
+        {
+            if (!Convert.ToBoolean(Session["token"]))
             {
 
                 Response.Redirect("~/InicioSesion.aspx");
@@ -42,10 +42,11 @@ namespace ListadoDeFirmasDSP._Administracion
 
                     CatalogoUsuario();
                     parametros();
+                    
 
 
                 }
-            }*/
+            }
         }
 
 
@@ -64,6 +65,10 @@ namespace ListadoDeFirmasDSP._Administracion
             CtrlAddNombre.Text = null;
             CtrlAddRFC.Text = null;
             CtrlAddUsuario.Text = null;
+            CtrlAddApMaterno.Text = null;
+            CtrlAddApPaterno.Text = null;
+            CtrlAddPass.Text = null;
+            dvCtrlAddPassSugerido.Visible = false;
 
 
             /*limpiar modulo modificar*/
@@ -129,7 +134,7 @@ namespace ListadoDeFirmasDSP._Administracion
         private void CatalogoUsuario()
         {
             DataTable dtCatUsuario = new DataTable();
-            SqlDataAdapter cmdCatusuario = new SqlDataAdapter("exec Pry1015_ConsultaUsuarios", conexionBD);
+            SqlDataAdapter cmdCatusuario = new SqlDataAdapter("spcatDSP_UsuariosFirmas", conexionBD);
             conexionBD.Open();
             cmdCatusuario.Fill(dtCatUsuario);
             conexionBD.Close();
@@ -141,7 +146,7 @@ namespace ListadoDeFirmasDSP._Administracion
         private void parametros()
         {
 
-            SqlCommand cmdJurisdiccion = new SqlCommand("exec Pry1015_Parametro_ConsultaUsuarios_Juris ", conexionBD);
+            SqlCommand cmdJurisdiccion = new SqlCommand("spcatDSP_UsuariosFirmasFiltroxJuris ", conexionBD);
             SqlDataAdapter sdJurisdiccion = new SqlDataAdapter(cmdJurisdiccion);
             DataTable dtJurisdiccion = new DataTable();
             sdJurisdiccion.Fill(dtJurisdiccion);
@@ -150,7 +155,7 @@ namespace ListadoDeFirmasDSP._Administracion
 
             ddlJuris.DataSource = dtJurisdiccion;
             ddlJuris.DataBind();
-
+            
             ddlCtrlAddJurisdiccion.Items.Clear();
             ddlCtrlAddJurisdiccion.Items.Add("Selecciona");
             ddlCtrlAddJurisdiccion.DataSource = dtJurisdiccion;
@@ -161,8 +166,8 @@ namespace ListadoDeFirmasDSP._Administracion
 
             ddlCtrlModificarJuris.DataSource = dtJurisdiccion;
             ddlCtrlModificarJuris.DataBind();
-
-            SqlCommand cmdRol = new SqlCommand("exec Pry1015_Parametro_ConsultaUsuarios_Rol ", conexionBD);
+            
+            SqlCommand cmdRol = new SqlCommand("spcatDSP_UsuariosFirmasFiltroxTipo ", conexionBD);
             SqlDataAdapter sdRol = new SqlDataAdapter(cmdRol);
             DataTable dtRol = new DataTable();
             sdRol.Fill(dtRol);
@@ -177,8 +182,9 @@ namespace ListadoDeFirmasDSP._Administracion
             ddlCtrlModificarRol.Items.Add("Selecciona");
             ddlCtrlModificarRol.DataSource = dtRol;
             ddlCtrlModificarRol.DataBind();
-
-            SqlCommand cmdESTATUS = new SqlCommand("exec Pry1015_Parametro_ConsultaUsuarios_ESTATUS ", conexionBD);
+            
+            
+            SqlCommand cmdESTATUS = new SqlCommand("spcatDSP_UsuariosFirmasFiltroxEstatus ", conexionBD);
             SqlDataAdapter sdESTATUS = new SqlDataAdapter(cmdESTATUS);
             DataTable dtESTATUS = new DataTable();
             sdESTATUS.Fill(dtESTATUS);
@@ -186,7 +192,7 @@ namespace ListadoDeFirmasDSP._Administracion
             ddlCtrlModificarEstatus.Items.Add("Selecciona");
             ddlCtrlModificarEstatus.DataSource = dtESTATUS;
             ddlCtrlModificarEstatus.DataBind();
-
+         
         }
 
         /*Modulo Consulta*/
@@ -201,7 +207,7 @@ namespace ListadoDeFirmasDSP._Administracion
             try
             {
                 DataTable ConsultaJuris = new DataTable();
-                SqlDataAdapter BuscaJuris = new SqlDataAdapter("exec Pry1015_ConsultaUsuarios_jurisdiccion  @jurisdiccion='" + ddlJuris.Text + "'", conexionBD);
+                SqlDataAdapter BuscaJuris = new SqlDataAdapter("spcatDSP_UsuariosFirmasConsulta  @jurisdiccion='" + ddlJuris.Text + "'", conexionBD);
                 conexionBD.Open();
                 BuscaJuris.Fill(ConsultaJuris);
                 conexionBD.Close();
@@ -225,7 +231,7 @@ namespace ListadoDeFirmasDSP._Administracion
                     else
                     {
                         DataTable ConsultaUsuario = new DataTable();
-                        SqlDataAdapter BuscaUsuario = new SqlDataAdapter("exec Pry1015_ConsultaUsuarios_nombre  @usuario='" + txtUser.Text + "'", conexionBD);
+                        SqlDataAdapter BuscaUsuario = new SqlDataAdapter("spcatDSP_UsuariosFirmasFiltroxNombre  @usuario='" + txtUser.Text + "'", conexionBD);
                         conexionBD.Open();
                         BuscaUsuario.Fill(ConsultaUsuario);
                         conexionBD.Close();
@@ -277,23 +283,25 @@ namespace ListadoDeFirmasDSP._Administracion
 
             try
             {
-                SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
+                SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
                 conexionBD.Open();
 
 
-                SqlCommand UpdateUsuario = new SqlCommand("Pry1015_UsuariosActualiza", conexionBD);
+                SqlCommand UpdateUsuario = new SqlCommand("spDSP_UsuarioEdita", conexionBD);
                 UpdateUsuario.CommandType = CommandType.StoredProcedure;
 
                 UpdateUsuario.Parameters.Clear();
 
-                UpdateUsuario.Parameters.AddWithValue("@usuario_id", Convert.ToInt32(txtIdUsuario.Text));
+                UpdateUsuario.Parameters.AddWithValue("@idUsuario", Convert.ToInt32(txtIdUsuario.Text));
                 UpdateUsuario.Parameters.AddWithValue("@usuario", Convert.ToString(txtCtrlModificarUsuario.Text));
-                UpdateUsuario.Parameters.AddWithValue("@jurisdiccion_Clave", Convert.ToString(ddlCtrlModificarJuris.Text));
-                UpdateUsuario.Parameters.AddWithValue("@rol", Convert.ToString(ddlCtrlModificarRol.Text));
+                UpdateUsuario.Parameters.AddWithValue("@JurisdiccionID", Convert.ToString(ddlCtrlModificarJuris.Text));
+                UpdateUsuario.Parameters.AddWithValue("@TipoUsuario", Convert.ToString(ddlCtrlModificarRol.Text));
                 UpdateUsuario.Parameters.AddWithValue("@rfc", Convert.ToString(txtCtrlModificarRFC.Text));
                 UpdateUsuario.Parameters.AddWithValue("@curp ", Convert.ToString(txtCtrlModificarCURP.Text));
+                UpdateUsuario.Parameters.AddWithValue("@apPaterno", Convert.ToString(txtCtrlModificarApPaterno.Text));
+                UpdateUsuario.Parameters.AddWithValue("@apMaterno", Convert.ToString(txtCtrlModificarApMaterno.Text));
                 UpdateUsuario.Parameters.AddWithValue("@nombre", Convert.ToString(txtCtrlModificarNombre.Text));
-                UpdateUsuario.Parameters.AddWithValue("@correo_electronico", Convert.ToString(txtCtrlModificarCorreo.Text));
+                UpdateUsuario.Parameters.AddWithValue("@correoElectronico", Convert.ToString(txtCtrlModificarCorreo.Text));
                 UpdateUsuario.Parameters.AddWithValue("@Estatus", Convert.ToString(ddlCtrlModificarEstatus.Text));
 
 
@@ -344,10 +352,14 @@ namespace ListadoDeFirmasDSP._Administracion
             CtrlAddCurp.Text = null;
             CtrlAddNombre.Text = null;
             CtrlAddEmail.Text = null;
+            CtrlAddApMaterno.Text = null;
+            CtrlAddApPaterno.Text = null;
+            CtrlAddPass.Text = null;
 
             dvCtrlAgregar.Visible = true;
             btnCtrlAddAgregar.Visible = true;
             btnInicio.Visible = true;
+            btnCtrolAddPassSugerido.Visible = true;
             OcultaConsulta();
 
             BtnLimpiaBusqueda.Visible = false;
@@ -357,50 +369,71 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             try
             {
-                SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
-                conexionBD.Open();
+                string valUsuario = CtrlAddUsuario.Text;
+                string valPass = CtrlAddPass.Text;
 
-
-                SqlCommand AddUsuario = new SqlCommand("Pry1015_UsuariosInserta", conexionBD);
-                AddUsuario.CommandType = CommandType.StoredProcedure;
-
-                AddUsuario.Parameters.Clear();
-
-                AddUsuario.Parameters.AddWithValue("@Jurisdiccion", Convert.ToString(ddlCtrlAddJurisdiccion.Text));
-                AddUsuario.Parameters.AddWithValue("@rol", Convert.ToString(ddlCtrlAddRol.Text));
-                AddUsuario.Parameters.AddWithValue("@usuario", Convert.ToString(CtrlAddUsuario.Text));
-                AddUsuario.Parameters.AddWithValue("@rfc", Convert.ToString(CtrlAddRFC.Text));
-                AddUsuario.Parameters.AddWithValue("@curp", Convert.ToString(CtrlAddCurp.Text));
-                AddUsuario.Parameters.AddWithValue("@nombre", Convert.ToString(CtrlAddNombre.Text));
-                AddUsuario.Parameters.AddWithValue("@correo", Convert.ToString(CtrlAddEmail.Text));
-
-                int respuestaADD = AddUsuario.ExecuteNonQuery();
-
-                if (respuestaADD > 0)
+                if ( valUsuario.Length >0 && valPass.Length > 0 )
                 {
+                    SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
+                    conexionBD.Open();
 
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'El registro se ha agregado con éxito', 'success');", true);
+                    SqlCommand AddUsuario = new SqlCommand("spDSP_UsuarioInserta", conexionBD);
+                    AddUsuario.CommandType = CommandType.StoredProcedure;
 
-                    CtrlAddUsuario.Text = null;
-                    CtrlAddRFC.Text = null;
-                    CtrlAddCurp.Text = null;
-                    CtrlAddNombre.Text = null;
-                    CtrlAddEmail.Text = null;
+                    AddUsuario.Parameters.Clear();
 
-                    dvCtrlAgregar.Visible = true;
-                    btnCtrlAddAgregar.Visible = true;
-                    btnInicio.Visible = true;
-                    OcultaConsulta();
+                    AddUsuario.Parameters.AddWithValue("@Jurisdiccion", Convert.ToString(ddlCtrlAddJurisdiccion.Text));
+                    AddUsuario.Parameters.AddWithValue("@tipoUsuario", Convert.ToString(ddlCtrlAddRol.Text));
+                    AddUsuario.Parameters.AddWithValue("@usuario", Convert.ToString(CtrlAddUsuario.Text));
+                    AddUsuario.Parameters.AddWithValue("@rfc", Convert.ToString(CtrlAddRFC.Text));
+                    AddUsuario.Parameters.AddWithValue("@curp", Convert.ToString(CtrlAddCurp.Text));
+                    AddUsuario.Parameters.AddWithValue("@nombre", Convert.ToString(CtrlAddNombre.Text));
+                    AddUsuario.Parameters.AddWithValue("@correoElectronico", Convert.ToString(CtrlAddEmail.Text));
+                    AddUsuario.Parameters.AddWithValue("@apPaterno", Convert.ToString(CtrlAddApPaterno.Text));
+                    AddUsuario.Parameters.AddWithValue("@apMaterno", Convert.ToString(CtrlAddApMaterno.Text));
+                    AddUsuario.Parameters.AddWithValue("@pass", Convert.ToString(CtrlAddPass.Text));
 
-                    conexionBD.Close();
+
+                    int respuestaADD = AddUsuario.ExecuteNonQuery();
+
+                    if (respuestaADD > 0)
+                    {
+
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'El registro se ha agregado con éxito', 'success');", true);
+
+                        CtrlAddUsuario.Text = null;
+                        CtrlAddRFC.Text = null;
+                        CtrlAddCurp.Text = null;
+                        CtrlAddNombre.Text = null;
+                        CtrlAddEmail.Text = null;
+                        CtrlAddApMaterno.Text = null;
+                        CtrlAddApPaterno.Text = null;
+                        CtrlAddPass.Text = null;
+
+                        dvCtrlAgregar.Visible = true;
+                        btnCtrlAddAgregar.Visible = true;
+                        btnInicio.Visible = true;
+                        OcultaConsulta();
+
+                        conexionBD.Close();
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'El usuario ya existe', 'error');", true);
+
+                    }
 
                 }
+
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'El usuario ya existe', 'error');", true);
-
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', 'No puedes dejar el(los) campo(s) USUARIO y/o CONTRASEÑA vaciós', 'warning');", true);
+                    
                 }
+                
 
             }
             catch (Exception error)
@@ -432,27 +465,18 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             int EliminarIdUsuario = Convert.ToInt32((sender as LinkButton).CommandArgument);
 
-
-
-            SqlConnection conexionBD = new SqlConnection(ConfigurationManager.ConnectionStrings["GalateaKey"].ToString());
-
-
-            SqlCommand deleteUser = new SqlCommand("Pry1015_UsuariosDelete", conexionBD);
+            SqlConnection conexionBD = new SqlConnection(ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
+            SqlCommand deleteUser = new SqlCommand("spDSP_UsuarioDelete", conexionBD);
             deleteUser.CommandType = CommandType.StoredProcedure;
             deleteUser.Parameters.Clear();
-
-            deleteUser.Parameters.AddWithValue("@usuario_id", EliminarIdUsuario);
+            deleteUser.Parameters.AddWithValue("@idUsuario", EliminarIdUsuario);
             conexionBD.Open();
             int eliminaCount = deleteUser.ExecuteNonQuery();
 
             if (eliminaCount > 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Correcto.!', 'El proceso se ha realizado con éxito', 'success');", true);
-
-
-
                 parametros();
-
                 BindGridViewConsulta();
             }
             else
@@ -468,67 +492,73 @@ namespace ListadoDeFirmasDSP._Administracion
 
         protected void editUser_Click(object sender, EventArgs e)
         {
-            int EditarIdUsuario = Convert.ToInt32((sender as LinkButton).CommandArgument);
+           
+                int EditarIdUsuario = Convert.ToInt32((sender as LinkButton).CommandArgument);
 
-            SqlCommand editUser = new SqlCommand("Pry1015_ConsultaUsuarios_USER", conexionBD);
-            editUser.CommandType = CommandType.StoredProcedure;
-            editUser.Parameters.Clear();
+                SqlConnection conexionBD = new SqlConnection(ConfigurationManager.ConnectionStrings["connFirmasDSP"].ToString());
+                conexionBD.Open();
+                SqlCommand editUser = new SqlCommand("spDSP_UsuarioEditaBusqueda", conexionBD);
+                editUser.CommandType = CommandType.StoredProcedure;
+                editUser.Parameters.Clear();
+                editUser.Parameters.AddWithValue("@idUsuario", EditarIdUsuario);
 
-            editUser.Parameters.AddWithValue("@usuario_id", EditarIdUsuario);
-            conexionBD.Open();
-            SqlDataReader TxtDatos;
-            TxtDatos = editUser.ExecuteReader();
-
-
-            if (TxtDatos.Read() == true)
-            {
-                /* ctrlModificarIdUser.Visible = true;*/
-
-                txtIdUsuario.Text = TxtDatos["usuario_id"].ToString();
-                ddlCtrlModificarJuris.Text = TxtDatos["jurisdiccion_Clave"].ToString();
-                ddlCtrlModificarRol.Text = TxtDatos["rol"].ToString();
-                txtCtrlModificarUsuario.Text = TxtDatos["usuario"].ToString();
-                txtCtrlModificarRFC.Text = TxtDatos["rfc"].ToString();
-                txtCtrlModificarCURP.Text = TxtDatos["curp"].ToString();
-                txtCtrlModificarNombre.Text = TxtDatos["nombre"].ToString();
-                txtCtrlModificarCorreo.Text = TxtDatos["correo_electronico"].ToString();
-                ddlCtrlModificarEstatus.Text = TxtDatos["Estatus"].ToString();
-                ctrlModificarIdUser.Text = TxtDatos["usuario_id"].ToString();
-
-                dvCtrlModificar.Visible = true;
-                dvCtrlModificarJuris.Visible = true;
-                dvCtrlModificarRol.Visible = true;
-                dvCtrlModificarRFC.Visible = true;
-                dvCtrlModificarCURP.Visible = true;
-                dvCtrlModificarNombre.Visible = true;
-                dvCtrlModificarCorreo.Visible = true;
-                dvCtrlModificarEstatus.Visible = true;
+                SqlDataReader TxtDatos;
+                TxtDatos = editUser.ExecuteReader();
 
 
-                btnCtrlModificarGuardar.Visible = true;
-                BtnLimpiar.Visible = true;
+                if (TxtDatos.Read() == true)
+                {
+                    /* ctrlModificarIdUser.Visible = true;*/
 
-                ControlJuris.Visible = false;
-                dvUsuario.Visible = false;
-                btConsulta.Visible = false;
-                btnCtrlAddAgregar.Visible = false;
-                BtnAgregar.Visible = false;
-                BtnLimpiaBusqueda.Visible = false;
+                    txtIdUsuario.Text = TxtDatos["idUsuario"].ToString();
+                    ddlCtrlModificarJuris.Text = TxtDatos["JurisdiccionID"].ToString();
+                    ddlCtrlModificarRol.Text = TxtDatos["idTipoUsuario"].ToString();
+                    txtCtrlModificarUsuario.Text = TxtDatos["usuario"].ToString();
+                    txtCtrlModificarRFC.Text = TxtDatos["rfc"].ToString();
+                    txtCtrlModificarCURP.Text = TxtDatos["curp"].ToString();
+                    txtCtrlModificarApPaterno.Text = TxtDatos["ApPaterno"].ToString();
+                    txtCtrlModificarApMaterno.Text = TxtDatos["ApMaterno"].ToString();
+                    txtCtrlModificarNombre.Text = TxtDatos["nombre"].ToString();
+                    txtCtrlModificarCorreo.Text = TxtDatos["correoElectronico"].ToString();
+                    ddlCtrlModificarEstatus.Text = TxtDatos["Estatus"].ToString();
+                    ctrlModificarIdUser.Text = TxtDatos["idUsuario"].ToString();
 
-                btnCancelaEdit.Visible = true;
-                BtnLimpiaBusqueda.Visible = false;
-                BtnLimpiar.Visible = false;
+                    dvCtrlModificar.Visible = true;
+                    dvCtrlModificarJuris.Visible = true;
+                    dvCtrlModificarRol.Visible = true;
+                    dvCtrlModificarRFC.Visible = true;
+                    dvCtrlModificarCURP.Visible = true;
+                    dvCtrlModificarNombre.Visible = true;
+                    dvCtrlModificarCorreo.Visible = true;
+                    dvCtrlModificarEstatus.Visible = true;
+                    dvCtrlModificarApPaterno.Visible = true;
+                    dvCtrlModificarApMaterno.Visible = true;
 
-                gvUsuarios.Visible = false;
 
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', ':(', 'error');", true);
-            }
+                    btnCtrlModificarGuardar.Visible = true;
+                    BtnLimpiar.Visible = true;
 
-            conexionBD.Close();
+                    ControlJuris.Visible = false;
+                    dvUsuario.Visible = false;
+                    btConsulta.Visible = false;
+                    btnCtrlAddAgregar.Visible = false;
+                    BtnAgregar.Visible = false;
+                    BtnLimpiaBusqueda.Visible = false;
 
+                    btnCancelaEdit.Visible = true;
+                    BtnLimpiaBusqueda.Visible = false;
+                    BtnLimpiar.Visible = false;
+
+                    gvUsuarios.Visible = false;
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "swal('Atención.!', ':(', 'error');", true);
+                }
+
+                conexionBD.Close();
+           
         }
 
         protected void BtnLimpiaBusqueda_Click(object sender, EventArgs e)
@@ -561,5 +591,30 @@ namespace ListadoDeFirmasDSP._Administracion
         {
             Response.Redirect("~/_Administracion/AdministracionDeUsuarios.aspx");
         }
+
+        protected void btnCtrolAddPassSugerido_Click(object sender, EventArgs e)
+        {
+            dvCtrlAddPassSugerido.Visible = true;
+
+            Random rdn = new Random();
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%$#@.¡!¿?_-";
+            int longitud = caracteres.Length;
+            char letra;
+            int longitudContrasenia = 8;
+            string contraseniaAleatoria = string.Empty;
+            for (int i = 0; i < longitudContrasenia; i++)
+            {
+                letra = caracteres[rdn.Next(longitud)];
+                contraseniaAleatoria += letra.ToString();
+                CtrlAddPassGenerate.Text = contraseniaAleatoria;
+            }
+
+
+
+
+        }
+
+       
+      
     }
 }

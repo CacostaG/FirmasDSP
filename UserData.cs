@@ -28,6 +28,12 @@ namespace ListadoDeFirmasDSP
 
         public  string TipoUsuario { get; set; }
 
+        public string RFC { get; set; }
+
+        public string CURP { get; set; }
+
+        public string CorreoElectronico { get; set; }
+
     }
 
 

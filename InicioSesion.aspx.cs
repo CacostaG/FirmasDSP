@@ -67,7 +67,9 @@ namespace ListadoDeFirmasDSP
                             Session["nombre"] = validLogin.nombre;
                             Session["nombreJuris"] = validLogin.NombreJuris;
                             Session["rol"] = validLogin.TipoUsuario;
-
+                            Session["RFC"] = validLogin.RFC;
+                            Session["CURP"] = validLogin.CURP;
+                            Session["CorreoElectronico"] = validLogin.CorreoElectronico;
 
 
                             var idUsuario = Session["idUsuario"];
@@ -75,6 +77,9 @@ namespace ListadoDeFirmasDSP
                             var nombre = Session["nombre"];
                             var nombreJuris = Session["nombreJuris"];
                             var rol = Session["rol"];
+                            var RFC = Session["RFC"];
+                            var CURP = Session["CURP"];
+                            var CorreoElectronico = Session["CorreoElectronico"];
 
 
                             switch (estatus)

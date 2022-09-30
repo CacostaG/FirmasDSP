@@ -23,6 +23,8 @@ namespace ListadoDeFirmasDSP._ImpresioListados
                 
                 if (!IsPostBack)
                 {
+
+                  
                     var rol = (string)Session["rol"];
                     switch (rol)
                     {

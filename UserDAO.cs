@@ -50,6 +50,10 @@ namespace ListadoDeFirmasDSP
                         userData.clave = reader.GetString(8);
                         userData.NombreJuris = reader.GetString(9);
                         userData.TipoUsuario = reader.GetString(10);
+                        userData.RFC = reader.GetString(11);
+                        userData.CURP = reader.GetString(12);
+                        userData.CorreoElectronico = reader.GetString(13);
+
 
 
 

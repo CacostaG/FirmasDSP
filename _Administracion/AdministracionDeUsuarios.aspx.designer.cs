@@ -105,24 +105,6 @@ namespace ListadoDeFirmasDSP._Administracion
         protected global::System.Web.UI.WebControls.DropDownList ddlCtrlAddRol;
 
         /// <summary>
-        /// Control dvCtrlAddUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddUsuario;
-
-        /// <summary>
-        /// Control CtrlAddUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CtrlAddUsuario;
-
-        /// <summary>
         /// Control dvCtrlAddRFC.
         /// </summary>
         /// <remarks>
@@ -159,6 +141,42 @@ namespace ListadoDeFirmasDSP._Administracion
         protected global::System.Web.UI.WebControls.TextBox CtrlAddCurp;
 
         /// <summary>
+        /// Control dvCtrlAddApPaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddApPaterno;
+
+        /// <summary>
+        /// Control CtrlAddApPaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddApPaterno;
+
+        /// <summary>
+        /// Control dvCtrlAddApMaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddApMaterno;
+
+        /// <summary>
+        /// Control CtrlAddApMaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddApMaterno;
+
+        /// <summary>
         /// Control dvCtrlAddNombre.
         /// </summary>
         /// <remarks>
@@ -193,6 +211,60 @@ namespace ListadoDeFirmasDSP._Administracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CtrlAddEmail;
+
+        /// <summary>
+        /// Control dvCtrlAddUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddUsuario;
+
+        /// <summary>
+        /// Control CtrlAddUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddUsuario;
+
+        /// <summary>
+        /// Control dvCtrlAddPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddPass;
+
+        /// <summary>
+        /// Control CtrlAddPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddPass;
+
+        /// <summary>
+        /// Control dvCtrlAddPassSugerido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddPassSugerido;
+
+        /// <summary>
+        /// Control CtrlAddPassGenerate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddPassGenerate;
 
         /// <summary>
         /// Control dvCtrlModificar.
@@ -330,6 +402,42 @@ namespace ListadoDeFirmasDSP._Administracion
         protected global::System.Web.UI.WebControls.TextBox txtCtrlModificarCURP;
 
         /// <summary>
+        /// Control dvCtrlModificarApPaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlModificarApPaterno;
+
+        /// <summary>
+        /// Control txtCtrlModificarApPaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCtrlModificarApPaterno;
+
+        /// <summary>
+        /// Control dvCtrlModificarApMaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlModificarApMaterno;
+
+        /// <summary>
+        /// Control txtCtrlModificarApMaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCtrlModificarApMaterno;
+
+        /// <summary>
         /// Control dvCtrlModificarNombre.
         /// </summary>
         /// <remarks>
@@ -409,6 +517,15 @@ namespace ListadoDeFirmasDSP._Administracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCtrlAddAgregar;
+
+        /// <summary>
+        /// Control btnCtrolAddPassSugerido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCtrolAddPassSugerido;
 
         /// <summary>
         /// Control btnCtrlModificarGuardar.
