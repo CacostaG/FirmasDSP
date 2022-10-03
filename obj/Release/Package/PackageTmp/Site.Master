@@ -32,7 +32,7 @@
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
     <link href="css/sweetalert.css" rel="stylesheet" />
     <script src="Scripts/sweetalert.min.js"></script>
-
+    <script src="https://kit.fontawesome.com/27c01da83f.js" crossorigin="anonymous"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -238,6 +238,11 @@
                         <li>
                             <a href="../Contact.aspx"><i class="fa fa-fw fa-desktop"></i>Soporte</a>
                         </li>
+
+                        <li>
+                            <a href="../CambioPassword.aspx"><i class="fa fa-fw fa-gear"></i>Cambio de contraseña</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

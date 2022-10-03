@@ -28,7 +28,7 @@
                                 <!--Principal_Jurisdiccion-->
                                 <div class="form-group col-xs-6 col-md-6 col-lg-6" id="ControlJuris" runat="server">
                                     <label class="control-label">Jurisdicción</label>
-                                    <asp:DropDownList ID="ddlJuris" runat="server" AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control" DataTextField="clave_juris" align="center" UseSubmitBehavior="False" OnSelectedIndexChanged="ddlJuris_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlJuris" runat="server" AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control" DataTextField="claveJuris" align="center" UseSubmitBehavior="False" OnSelectedIndexChanged="ddlJuris_SelectedIndexChanged">
                                         <asp:ListItem Value="0">Selecciona</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -48,7 +48,7 @@
                                         <label class="control-label">Jurisdicción</label>
                                         <asp:DropDownList ID="ddlCtrlAddJurisdiccion" runat="server"
                                             AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
-                                            DataTextField="clave_juris"
+                                            DataTextField="claveJuris" DataValueField ="JurisdiccionID"
                                             align="center"
                                             UseSubmitBehavior="False">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
@@ -60,41 +60,69 @@
                                         <label class="control-label">Permisos</label>
                                         <asp:DropDownList ID="ddlCtrlAddRol" runat="server"
                                             AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
-                                            DataTextField="rol"
+                                            DataTextField="TipoUsuario" DataValueField ="idTipoUsuario"
                                             align="center"
                                             UseSubmitBehavior="False">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
+                                            
                                         </asp:DropDownList>
                                     </div>
 
-                                    <!-- ModuloAgregar_Usuario-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvCtrlAddUsuario" runat="server">
-                                        <label class="control-label">Usuario</label>
-                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddUsuario"></asp:TextBox>
-                                    </div>
+                                  
 
                                     <!-- ModuloAgregar_RFC-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvCtrlAddRFC" runat="server">
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlAddRFC" runat="server">
                                         <label class="control-label">RFC</label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddRFC" MaxLength="13" Style="text-transform: uppercase"></asp:TextBox>
                                     </div>
 
                                     <!-- ModuloAgregar_Curp-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvCtrlAddCurp" runat="server">
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlAddCurp" runat="server">
                                         <label class="control-label">CURP</label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddCurp" MaxLength="18" Style="text-transform: uppercase"></asp:TextBox>
                                     </div>
 
-                                    <!-- ModuloAgregar_NombreUsuario-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvCtrlAddNombre" runat="server">
-                                        <label class="control-label">Nombre del usuario</label>
+                                     <!-- ModuloAgregar_ApPaterno-->
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlAddApPaterno" runat="server">
+                                        <label class="control-label">Apellido paterno</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddApPaterno" Style="text-transform: uppercase"></asp:TextBox>
+                                    </div>
+
+                                      <!-- ModuloAgregar_ApMaterno-->
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlAddApMaterno" runat="server">
+                                        <label class="control-label">Apellido materno</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddApMaterno" Style="text-transform: uppercase"></asp:TextBox>
+                                    </div>
+
+                                    <!-- ModuloAgregar_NombredelUsuario-->
+                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddNombre" runat="server">
+                                        <label class="control-label">Nombre </label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddNombre" Style="text-transform: uppercase"></asp:TextBox>
                                     </div>
 
                                     <!-- ModuloAgregar_correo-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-12" id="dvCtrlAddEmail" runat="server">
+                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddEmail" runat="server">
                                         <label class="control-label">Correo electrónico</label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddEmail" AutoCompleteType="Email"></asp:TextBox>
+                                    </div>
+
+                                      <!-- ModuloAgregar_Usuario-->
+                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddUsuario" runat="server">
+                                        <label class="control-label">Usuario</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddUsuario"></asp:TextBox>
+                                    </div>
+
+                                        <!-- ModuloAgregar_Pass-->
+                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddPass" runat="server">
+                                        <label class="control-label">Contraseña</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddPass"></asp:TextBox>
+                                    </div>
+
+                                          <!-- ModuloAgregar_PassSugerido-->
+                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddPassSugerido" runat="server" visible="false">
+                                        <label class="control-label">Contraseña Suegerida</label>
+                                        <asp:TextBox runat="server" class="form-control"  ID="CtrlAddPassGenerate"></asp:TextBox>
+                                        
                                     </div>
 
                                 </div>
@@ -107,9 +135,8 @@
                                     <div class="form-group col-xs-12 col-md-6 col-lg-6" id="CtrlModificarUsuarioId" runat="server">
                                         <asp:Label ID="ctrlModificarIdUser" runat="server" Text="" Visible="false"></asp:Label>
                                         <label class="control-label">UsuarioID</label>
-                                        <asp:TextBox runat="server" class="form-control" value="" ID="txtIdUsuario"></asp:TextBox>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="txtIdUsuario" ></asp:TextBox>
                                     </div>
-
 
                                     <div class="form-group col-xs-12 col-md-6 col-lg-6" id="CtrlModificarUsuario" runat="server">
                                         <asp:Label ID="lblUsuario" runat="server" Text="" Visible="false"></asp:Label>
@@ -122,7 +149,7 @@
                                         <label class="control-label">Jurisdicción</label>
                                         <asp:DropDownList ID="ddlCtrlModificarJuris" runat="server"
                                             AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
-                                            DataTextField="clave_juris"
+                                            DataTextField="claveJuris" DataValueField ="JurisdiccionID"
                                             align="center"
                                             UseSubmitBehavior="False">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
@@ -135,7 +162,7 @@
                                         <label class="control-label">Permisos</label>
                                         <asp:DropDownList ID="ddlCtrlModificarRol" runat="server"
                                             AppendDataBoundItems="True" AutoPostBack="True" CssClass="form-control"
-                                            DataTextField="rol"
+                                            DataTextField="TipoUsuario" DataValueField="idTipoUsuario"
                                             align="center"
                                             UseSubmitBehavior="False">
                                             <asp:ListItem Value="0">Selecciona</asp:ListItem>
@@ -154,6 +181,19 @@
                                         <label class="control-label">CURP</label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="txtCtrlModificarCURP" Style="text-transform: uppercase" MaxLength="18"></asp:TextBox>
                                     </div>
+
+                                     <!-- ModuloModificar_ApPaterno-->
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlModificarApPaterno" runat="server" visible="false">
+                                        <label class="control-label">Apellido paterno</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="txtCtrlModificarApPaterno" Style="text-transform: uppercase"></asp:TextBox>
+                                    </div>
+
+                                    <!-- ModuloModificar_ApPaterno-->
+                                    <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlModificarApMaterno" runat="server" visible="false">
+                                        <label class="control-label">Apellido materno</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="txtCtrlModificarApMaterno" Style="text-transform: uppercase"></asp:TextBox>
+                                    </div>
+
 
                                     <!-- ModuloModificar_nombre-->
                                     <div class="form-group col-xs-12 col-md-6 col-lg-6" id="dvCtrlModificarNombre" runat="server" visible="false">
@@ -185,7 +225,7 @@
                                 <!---Modulo de Consulta (Principal)--->
                                 <div class="form-group col-xs-12 col-md-12 col-lg-12">
 
-                                    <!--btn busar usuario-->
+                                    <!--btn buscar usuario-->
                                     <asp:Button ID="btConsulta" runat="server" Text="Consultar" OnClick="btConsulta_Click" Visible="true" CssClass="btn btn-success" />
 
                                     <!--btn agregar usuario acceso directo-->
@@ -194,6 +234,9 @@
                                     <!--btn guarda usuario nuevo-->
 
                                     <asp:Button ID="btnCtrlAddAgregar" runat="server" OnClick="btnCtrlAddAgregar_Click" Text="Agregar" Visible="false" CssClass="btn btn-success" />
+
+                                    <!--btn contraseña sugerida-->
+                                    <asp:Button id="btnCtrolAddPassSugerido" runat="server" OnClick="btnCtrolAddPassSugerido_Click" Text="Contraseña sugerida" Visible="false" CssClass="btn btn-info"/>
 
                                     <!--btn actualiza-->
                                     <asp:Button ID="btnCtrlModificarGuardar" runat="server" Text="Actualizar" OnClick="btnCtrlModificarGuardar_Click" Visible="false" CssClass="btn btn-success" />
@@ -223,7 +266,7 @@
 
                                                             <asp:TemplateField HeaderText="usuario_id" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="usuario_id" runat="server" Text='<%# Eval("usuario_id") %>'></asp:Label>
+                                                                    <asp:Label ID="usuario_id" runat="server" Text='<%# Eval("idUsuario") %>'></asp:Label>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
@@ -231,7 +274,7 @@
 
                                                             <asp:TemplateField HeaderText="Jurisdicción" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="columnJurisdicion" runat="server" Text='<%# Eval("jurisdiccion_Clave") %>'></asp:Label>
+                                                                    <asp:Label ID="columnJurisdicion" runat="server" Text='<%# Eval("clavejuris") %>'></asp:Label>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
@@ -247,7 +290,7 @@
 
                                                             <asp:TemplateField HeaderText="Permisos" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="columnPermiso" runat="server" Text='<%# Eval("rol") %>'></asp:Label>
+                                                                    <asp:Label ID="columnPermiso" runat="server" Text='<%# Eval("TipoUsuario") %>'></asp:Label>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
@@ -276,7 +319,7 @@
 
                                                             <asp:TemplateField HeaderText="Correo electronico" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="columnCorreo" runat="server" Text='<%# Eval("correo_Electronico") %>'></asp:Label>
+                                                                    <asp:Label ID="columnCorreo" runat="server" Text='<%# Eval("correoElectronico") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
                                                             </asp:TemplateField>
@@ -290,7 +333,7 @@
 
                                                             <asp:TemplateField HeaderText="Fecha de creación " ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="columnFecha" runat="server" Text='<%# Eval("Fecha_creacion") %>'></asp:Label>
+                                                                    <asp:Label ID="columnFecha" runat="server" Text='<%# Eval("FechaRegistro") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
                                                             </asp:TemplateField>
@@ -299,7 +342,7 @@
                                                             <asp:TemplateField HeaderText="Eliminar" ItemStyle-HorizontalAlign="Center" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton runat="server" ID="eliminaUser" CssClass="btn btn-danger" OnClick="eliminaUser_Click"
-                                                                        CommandArgument='<%# Eval("usuario_id") %>'>
+                                                                        CommandArgument='<%# Eval("idUsuario") %>'>
                                                                      <span aria-hidden="true" class="fas fa-trash-alt" ></span>
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
@@ -309,7 +352,7 @@
                                                             <asp:TemplateField HeaderText="Editar" ItemStyle-HorizontalAlign="Center" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="editUser" runat="server" AutoPostBack="true" CssClass="btn btn-info" OnClick="editUser_Click"
-                                                                        CommandArgument='<%# Eval("usuario_id") %>'>
+                                                                        CommandArgument='<%# Eval("idUsuario") %>'>
                                                                         <i class="far fa-edit"></i> 
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>

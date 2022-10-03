@@ -606,6 +606,7 @@ namespace ListadoDeFirmasDSP._Administracion
             {
                 letra = caracteres[rdn.Next(longitud)];
                 contraseniaAleatoria += letra.ToString();
+                
                 CtrlAddPassGenerate.Text = contraseniaAleatoria;
             }
 
