@@ -40,15 +40,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D62574E-888B-426F-942F-A046E58FBCB0}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://deimos:8080/tfs/dti_sistemas
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ListadoDeFirmasDSP.csproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ReportesFirmasDSP\\ReportesFirmasDSP.rptproj
-		SccProjectName2 = ReportesFirmasDSP
-		SccLocalPath2 = ReportesFirmasDSP
-	EndGlobalSection
 EndGlobal

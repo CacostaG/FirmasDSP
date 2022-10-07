@@ -159,7 +159,6 @@ C:\Soluciones\FirmasDSP\obj\Release\ListadoDeFirmasDSP.dll
 C:\Soluciones\FirmasDSP\obj\Release\ListadoDeFirmasDSP.pdb
 C:\Soluciones\FirmasDSP\obj\Release\ListadoDeFirmasDSP.XmlSerializers.dll
 C:\Soluciones\FirmasDSP\obj\Release\ListadoDeFirmasDSP.csproj.AssemblyReference.cache
-C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.csproj.CoreCompileInputs.cache
 C:\DEVLOCAL\FirmasDSP\bin\SqlServerTypes\x64\msvcr120.dll
 C:\DEVLOCAL\FirmasDSP\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\DEVLOCAL\FirmasDSP\bin\SqlServerTypes\x86\msvcr120.dll
@@ -320,8 +319,8 @@ C:\DEVLOCAL\FirmasDSP\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\DEVLOCAL\FirmasDSP\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\DEVLOCAL\FirmasDSP\bin\es\System.Web.Optimization.resources.dll
 C:\DEVLOCAL\FirmasDSP\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.csproj.CoreCompileInputs.cache
 C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.csproj.CopyComplete
 C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.dll
 C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.pdb
 C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.XmlSerializers.dll
-C:\DEVLOCAL\FirmasDSP\obj\Release\ListadoDeFirmasDSP.csproj.AssemblyReference.cache

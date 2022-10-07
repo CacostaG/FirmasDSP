@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>Z:\</_PublishTargetUrl>
-    <History>True|2022-09-19T19:36:59.6780981Z;True|2022-09-19T13:09:37.7873536-05:00;True|2022-09-19T12:44:12.1039272-05:00;True|2022-09-19T11:05:46.2745220-05:00;True|2022-09-19T10:41:31.4313129-05:00;False|2022-09-19T10:39:26.5226910-05:00;False|2022-09-19T10:39:04.6532721-05:00;True|2022-09-14T12:45:34.3175325-05:00;True|2022-09-14T12:25:41.8934424-05:00;True|2022-09-14T12:11:10.2399536-05:00;False|2022-09-14T12:05:40.0748229-05:00;</History>
+    <_PublishTargetUrl>C:\DSPFirmas</_PublishTargetUrl>
+    <History>True|2022-10-07T23:46:33.8474785Z;False|2022-10-07T18:45:54.8619361-05:00;False|2022-10-07T18:45:14.0818629-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="404.aspx">
@@ -156,13 +156,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/19/2017 07:03:52</publishTime>
     </File>
     <File Include="bin/ListadoDeFirmasDSP.dll">
-      <publishTime>09/19/2022 14:36:35</publishTime>
+      <publishTime>10/07/2022 18:45:12</publishTime>
     </File>
     <File Include="bin/ListadoDeFirmasDSP.pdb">
-      <publishTime>09/19/2022 14:36:35</publishTime>
-    </File>
-    <File Include="bin/ListadoDeFirmasDSP.XmlSerializers.dll">
-      <publishTime>09/19/2022 14:36:36</publishTime>
+      <publishTime>10/07/2022 18:45:12</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>08/24/2021 19:03:31</publishTime>
@@ -449,6 +446,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Bundle.config">
       <publishTime>07/21/2021 11:28:27</publishTime>
     </File>
+    <File Include="CambioPassword.aspx">
+      <publishTime>10/05/2022 12:19:38</publishTime>
+    </File>
     <File Include="CierraSesion.aspx">
       <publishTime>07/21/2021 11:28:27</publishTime>
     </File>
@@ -546,7 +546,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2021 11:28:27</publishTime>
     </File>
     <File Include="InicioSesion.aspx">
-      <publishTime>08/10/2022 14:30:45</publishTime>
+      <publishTime>10/07/2022 18:41:09</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>07/21/2021 11:28:40</publishTime>
@@ -933,7 +933,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2021 11:28:41</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>08/11/2022 14:04:36</publishTime>
+      <publishTime>10/06/2022 14:26:37</publishTime>
     </File>
     <File Include="SqlServerTypes/readme.htm">
       <publishTime>07/21/2021 11:28:41</publishTime>
@@ -1149,13 +1149,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2021 11:28:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/19/2022 10:41:10</publishTime>
+      <publishTime>10/07/2022 18:45:12</publishTime>
     </File>
     <File Include="_Administracion/ActualizacionResponsables.aspx">
       <publishTime>08/17/2022 19:00:22</publishTime>
     </File>
     <File Include="_Administracion/AdministracionDeUsuarios.aspx">
-      <publishTime>08/26/2021 12:58:56</publishTime>
+      <publishTime>09/30/2022 13:00:15</publishTime>
     </File>
     <File Include="_Administracion/CargaListadoCheques.aspx">
       <publishTime>08/04/2021 12:37:14</publishTime>
@@ -1164,7 +1164,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/04/2022 13:42:42</publishTime>
     </File>
     <File Include="_Administracion/RegistroDePolizas.aspx">
-      <publishTime>09/19/2022 14:36:30</publishTime>
+      <publishTime>09/21/2022 12:12:44</publishTime>
     </File>
     <File Include="_Consulta/ConsultaChequesGenerados.aspx">
       <publishTime>08/19/2022 11:54:57</publishTime>
@@ -1179,10 +1179,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/23/2022 18:50:01</publishTime>
     </File>
     <File Include="_ImpresioListados/ListadoDeFirmas.aspx">
-      <publishTime>08/03/2021 17:31:14</publishTime>
+      <publishTime>09/30/2022 13:04:39</publishTime>
     </File>
     <File Include="_ImpresioListados/ListadodeFirmasCheques.aspx">
-      <publishTime>08/03/2021 17:31:38</publishTime>
+      <publishTime>09/26/2022 18:54:32</publishTime>
     </File>
     <File Include="_ImpresioListados/ListadoDeFirmasFEAC.aspx">
       <publishTime>08/03/2021 17:35:47</publishTime>
@@ -1191,7 +1191,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/10/2021 19:50:11</publishTime>
     </File>
     <File Include="_ImpresioListados/ListadosDeFirmas.aspx">
-      <publishTime>08/29/2022 19:58:30</publishTime>
+      <publishTime>09/27/2022 15:02:38</publishTime>
     </File>
     <File Include="_ImpresioListados/ListadosdeFirmasCheques.aspx">
       <publishTime>08/25/2022 20:37:48</publishTime>

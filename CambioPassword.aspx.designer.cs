@@ -96,24 +96,6 @@ namespace ListadoDeFirmasDSP
         protected global::System.Web.UI.WebControls.TextBox CtrlAddRFC;
 
         /// <summary>
-        /// Control dvCtrlAddEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddEmail;
-
-        /// <summary>
-        /// Control CtrlAddEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CtrlAddEmail;
-
-        /// <summary>
         /// Control dvCtrlAddUsuario.
         /// </summary>
         /// <remarks>
@@ -130,6 +112,24 @@ namespace ListadoDeFirmasDSP
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CtrlAddUsuario;
+
+        /// <summary>
+        /// Control dvCtrlAddEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCtrlAddEmail;
+
+        /// <summary>
+        /// Control CtrlAddEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CtrlAddEmail;
 
         /// <summary>
         /// Control btnCtrlModificarGuardar.

@@ -7,20 +7,22 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ListadoDeFirmasDSP {
-    
-    
-    public partial class InicioSesion {
-        
+namespace ListadoDeFirmasDSP
+{
+
+
+    public partial class InicioSesion
+    {
+
         /// <summary>
-        /// Control form1.
+        /// Control frmLogSession.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmLogSession;
+
         /// <summary>
         /// Control dvMessage.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ListadoDeFirmasDSP {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvMessage;
-        
+
         /// <summary>
         /// Control lblMensaje.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ListadoDeFirmasDSP {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
-        
+
         /// <summary>
         /// Control txtUser.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ListadoDeFirmasDSP {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUser;
-        
+
         /// <summary>
         /// Control Pass.
         /// </summary>
@@ -56,7 +58,7 @@ namespace ListadoDeFirmasDSP {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Pass;
-        
+
         /// <summary>
         /// Control Button1.
         /// </summary>

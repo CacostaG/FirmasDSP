@@ -53,9 +53,9 @@ namespace ListadoDeFirmasDSP
                         userData.RFC = reader.GetString(11);
                         userData.CURP = reader.GetString(12);
                         userData.CorreoElectronico = reader.GetString(13);
+                        
 
-
-
+                        
 
 
                         return userData;

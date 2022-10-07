@@ -228,10 +228,8 @@
     <Content Include="_Reportes\ReporteListadoCheques.aspx" />
     <Content Include="_Reportes\TicketdeImpresion.aspx" />
     <Content Include="_Reportes\TicketdeImpresionMedidas.aspx" />
-    <None Include="Properties\PublishProfiles\Desarrollo.pubxml" />
     <None Include="Properties\PublishProfiles\FirmasDesarrollo.pubxml" />
     <None Include="Properties\PublishProfiles\FirmasProduccion.pubxml" />
-    <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <None Include="Web References\GauDes\Gau.disco" />
     <Content Include="_Administracion\RegistroDePolizas.aspx" />
     <Content Include="_Consulta\ConsultaChequesGenerados.aspx" />

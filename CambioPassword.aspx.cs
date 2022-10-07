@@ -41,7 +41,7 @@ namespace ListadoDeFirmasDSP
                 updatePass.Parameters.AddWithValue("@pass", Convert.ToString(CtrlAddPass.Text));
                 updatePass.Parameters.AddWithValue("@usuario", Convert.ToString(CtrlAddUsuario.Text));
                 updatePass.Parameters.AddWithValue("@rfc", Convert.ToString(CtrlAddRFC.Text));
-                updatePass.Parameters.AddWithValue("@correoElectronico", Convert.ToString(CtrlAddEmail.Text));
+                /*updatePass.Parameters.AddWithValue("@correoElectronico", Convert.ToString(CtrlAddEmail.Text));*/
                 
                 int respuestaUpdate = updatePass.ExecuteNonQuery();
                  if (respuestaUpdate > 0)

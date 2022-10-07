@@ -52,17 +52,20 @@
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddRFC" MaxLength="13" Style="text-transform: uppercase"></asp:TextBox>
                                     </div>
 
-                                    <!-- ModuloConfirma_correo-->
-                                    <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddEmail" runat="server">
-                                        <label class="control-label">Correo electrónico</label>
-                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddEmail" AutoCompleteType="Email"></asp:TextBox>
-                                    </div>
-
                                       <!-- ModuloConfirma_Usuario-->
                                     <div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddUsuario" runat="server">
                                         <label class="control-label">Usuario</label>
                                         <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddUsuario"></asp:TextBox>
                                     </div>
+
+                                    
+                                    <!-- ModuloConfirma_correo-->
+                                    <!--<div class="form-group col-xs-6 col-md-6 col-lg-6" id="dvCtrlAddEmail" runat="server">
+                                        <label class="control-label">Correo electrónico</label>
+                                        <asp:TextBox runat="server" class="form-control" value="" ID="CtrlAddEmail" AutoCompleteType="Email"></asp:TextBox>
+                                    </div>-->
+
+                                    
 
                                     
                                 </div>

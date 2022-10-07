@@ -20,16 +20,18 @@ using System.Data.SqlClient;
 namespace ListadoDeFirmasDSP
 {
     public partial class InicioSesion : System.Web.UI.Page
-    {/*
+    {
         SqlConnection conexionBD = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnFirmasDSP"].ToString());
-       */ protected void Page_Load(object sender, EventArgs e)
+      protected void Page_Load(object sender, EventArgs e)
         {
-
+            Pass.Attributes.Add("autocomplete", "off");
+            txtUser.Attributes.Add("autocomplete", "off");
         }
 
     
         public void ValidateUser(object sender, EventArgs e)
         {
+
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
@@ -68,8 +70,8 @@ namespace ListadoDeFirmasDSP
                             Session["nombreJuris"] = validLogin.NombreJuris;
                             Session["rol"] = validLogin.TipoUsuario;
                             Session["RFC"] = validLogin.RFC;
-                            Session["CURP"] = validLogin.CURP;
-                            Session["CorreoElectronico"] = validLogin.CorreoElectronico;
+                           /* Session["CURP"] = validLogin.CURP;
+                            Session["CorreoElectronico"] = validLogin.CorreoElectronico;*/
 
 
                             var idUsuario = Session["idUsuario"];
@@ -78,8 +80,8 @@ namespace ListadoDeFirmasDSP
                             var nombreJuris = Session["nombreJuris"];
                             var rol = Session["rol"];
                             var RFC = Session["RFC"];
-                            var CURP = Session["CURP"];
-                            var CorreoElectronico = Session["CorreoElectronico"];
+                         /*   var CURP = Session["CURP"];
+                            var CorreoElectronico = Session["CorreoElectronico"];*/
 
 
                             switch (estatus)

@@ -148,7 +148,7 @@
                                     <a href="../_Administracion/CargaListadoCheques.aspx">Carga de listados de cheques</a>
                                 </li>
 
-
+                                
                                 <li>
                                     <a href="../_Administracion/ActualizacionResponsables.aspx">Actualización de responsables</a>
                                 </li>
@@ -172,6 +172,7 @@
                                      <a href="../_Consulta/ConsultaNominaGenerada.aspx">Listados de nómina generada</a>
                                 </li>
 
+                                <!--
 
                                   <li>
                                      <a href="../_Consulta/ConsultaFEAC.aspx">Listados de FEAC</a>
@@ -179,6 +180,7 @@
                                     <li>
                                      <a href="../_Consulta/ConsultaMedidasFinAnioGenerados">Medidas de fin de año</a>
                                 </li>
+                                    -->
 
                             </ul>
                         </li>
@@ -198,6 +200,7 @@
                                     <a href="../_ImpresioListados/ListadoDeFirmas.aspx">Listados de nómina generada</a>
                                 </li>
 
+                                 <!--
                                  <li>
                                      <a href="../_ImpresioListados/ListadoDeFirmasFEAC.aspx">Listados de FEAC</a>
                                  </li>
@@ -205,7 +208,7 @@
                                  <li>
                                      <a href="../_ImpresioListados/ListadoDeFirmasMedidasFinAnio.aspx">Listados de medidas de fin de año</a>
                                  </li>
-
+                                 -->
     
                              </ul>
                         </li>
@@ -222,14 +225,14 @@
                                  <li>
                                     <a href="../_ImpresioListados/ListadosDeFirmas.aspx">Listados de  nómina generada </a>
                                 </li>
-
+                                 <!--
                                  <li>
                                      <a href="../_ImpresioListados/ListadosDeFirmasFEAC.aspx">Listados de FEAC</a>
                                  </li>
 
                                    <li>
                                      <a href="../_ImpresioListados/ListadosDeFirmasMedidasFinAnio.aspx">Listados de medidas de fin de año</a>
-                                 </li>
+                                 </li>-->
                              </ul>
                         </li>
 

@@ -28,7 +28,7 @@
 
 <body>
     <%--LOGIN --%>    
-    <form id="form1" runat="server">
+    <form id="frmLogSession" runat="server" autocomplete="off">
 
         <div class="container">
             <div class="row">
@@ -76,7 +76,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
                                             </div>
-                                            <asp:TextBox ID="txtUser" runat="server" CssClass="form-control" placeholder="Ingrese Usuario" />
+                                            <asp:TextBox ID="txtUser" runat="server" CssClass="form-control" placeholder="Ingrese Usuario" autocomplete="off" />
                                         </div>
                                         <div class="help-block with-errors text-danger"></div>
                                     </div>
@@ -93,7 +93,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                                             </div>
-                                            <asp:TextBox ID="Pass" runat="server"  CssClass="form-control" TextMode="Password" placeholder="Ingrese Contraseña" />
+                                            <asp:TextBox ID="Pass" runat="server"  CssClass="form-control" TextMode="Password" placeholder="Ingrese Contraseña" autocomplete="off" />
                                         </div>
                                         <div class="help-block with-errors text-danger"></div>
                                     </div>
